@@ -70,11 +70,15 @@ export function ServiceNode({ data }: NodeProps & { data: SiteNodeData }) {
     expanded: "w-[190px]",
   };
 
+  /* ── Delay de aparecer (stagger) basado en staggerIndex ── */
+  const staggerIndex = (data as Record<string, unknown>).staggerIndex as number | undefined;
+  const staggerDelay = staggerIndex != null ? staggerIndex * 0.07 : 0;
+
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.15 }}
-      className={`${widthMap[tier]} overflow-hidden rounded-xl text-center transition-all duration-300`}
+      className={`${widthMap[tier]} overflow-hidden rounded-xl text-center transition-all duration-300 node-appear`}
       style={{
         background: "var(--glass-bg)",
         backdropFilter: "blur(var(--glass-blur))",
@@ -83,6 +87,7 @@ export function ServiceNode({ data }: NodeProps & { data: SiteNodeData }) {
         borderLeftWidth: 3,
         borderLeftColor: accent,
         boxShadow: tier === "expanded" ? `0 0 16px ${accent}15` : "var(--shadow-sm)",
+        animationDelay: `${staggerDelay}s`,
       }}
     >
       <Handle type="target" position={Position.Top} className="!opacity-0 !pointer-events-none" />

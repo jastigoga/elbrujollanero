@@ -18,8 +18,8 @@ const HUB: Record<string, { x: number; y: number }> = {
   contacto:    { x: -400, y: -130 },
 };
 
-/* ── Hub nodes ────────────────────────────────────────────────── */
-const hubNodes: SiteNode[] = [
+/* ── Hub nodes — exportados para uso independiente ─────────────── */
+export const hubNodes: SiteNode[] = [
   {
     id: "inicio",
     type: "hub",
@@ -89,6 +89,7 @@ function fanLayout(
         level: "Z1",
         routeHref: `/servicios/${service.slug}`,
         category: service.category,
+        staggerIndex: i,
       },
     };
   });
@@ -98,7 +99,8 @@ const amorNodes = fanLayout(AMOR_SERVICES, 210, 120, 360, HUB.servicios);
 const protNodes = fanLayout(PROT_SERVICES, 330, 60, 360, HUB.servicios);
 const consNodes = fanLayout(CONS_SERVICES, 30, 30, 360, HUB.servicios);
 
-const serviceNodes: SiteNode[] = [...amorNodes, ...protNodes, ...consNodes];
+/* ── Service nodes — exportados para uso independiente ─────────── */
+export const serviceNodes: SiteNode[] = [...amorNodes, ...protNodes, ...consNodes];
 
 /* ── Edges ────────────────────────────────────────────────────── */
 

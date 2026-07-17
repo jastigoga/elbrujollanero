@@ -5,8 +5,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloating } from "@/components/layout/WhatsAppFloating";
 import { ZuiCanvas } from "@/features/zui-canvas/ZuiCanvas";
-import { Hero } from "@/components/sections/Hero";
-import { Testimonios } from "@/components/sections/Testimonios";
 import { services } from "@/content/services";
 import Link from "next/link";
 
@@ -14,14 +12,15 @@ export default function HomePage() {
   const [simpleMode, setSimpleMode] = useState(false);
 
   return (
-    <>
+    <div className="relative h-screen w-screen overflow-hidden bg-base">
       <Navbar simpleMode={simpleMode} onToggleSimpleMode={() => setSimpleMode((v) => !v)} />
 
-      <main id="contenido-principal" className="mx-auto max-w-5xl px-6 py-16">
-        <Hero />
-
-        {simpleMode ? (
-          <section>
+      {simpleMode ? (
+        <main
+          id="contenido-principal"
+          className="h-full w-full overflow-auto px-4 pt-20 sm:px-6 lg:px-8"
+        >
+          <div className="mx-auto max-w-5xl py-16">
             <h2 className="mb-6 text-center font-display text-2xl text-ivory">
               Nuestros servicios
             </h2>
@@ -39,16 +38,17 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
-          </section>
-        ) : (
+          </div>
+          <Footer />
+        </main>
+      ) : (
+        <>
           <ZuiCanvas />
-        )}
+          <Footer />
+        </>
+      )}
 
-        <Testimonios />
-      </main>
-
-      <Footer />
       <WhatsAppFloating message="Hola, quiero una consulta gratuita" />
-    </>
+    </div>
   );
 }

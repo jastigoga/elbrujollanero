@@ -40,4 +40,56 @@
   --error: #EF4444;
   --success: #22C55E;
   --warning: #EAB308;
+
+  /* Glow místico — nodos */
+  --glow-hub: 0 0 30px rgba(201, 162, 75, 0.25), 0 0 60px rgba(201, 162, 75, 0.10);
+  --glow-service: 0 0 24px rgba(201, 162, 75, 0.20), 0 0 48px rgba(201, 162, 75, 0.08);
+
+  /* Glow por categoría (bordes laterales) */
+  --glow-amor: 0 0 20px rgba(251, 113, 133, 0.30);
+  --glow-proteccion: 0 0 20px rgba(56, 189, 248, 0.30);
+  --glow-consulta: 0 0 20px rgba(251, 191, 36, 0.30);
+
+  /* Animación flotante */
+  --float-duration: 4s;
+  --float-distance: 8px;
+}
+
+/* ── Keyframes: flotación ─────────────────────────────────────── */
+@keyframes nodeFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(calc(-1 * var(--float-distance))); }
+}
+
+/* ── Keyframes: aparición escalonada ─────────────────────────── */
+@keyframes nodeAppear {
+  0%   { opacity: 0; transform: scale(0.6); }
+  60%  { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ── Keyframes: pulso de glow ────────────────────────────────── */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: var(--glow-hub); }
+  50%      { box-shadow: 0 0 40px rgba(201, 162, 75, 0.35), 0 0 80px rgba(201, 162, 75, 0.15); }
+}
+
+/* ── Utility classes para nodos ──────────────────────────────── */
+.node-float {
+  animation: nodeFloat var(--float-duration) ease-in-out infinite;
+}
+
+.node-appear {
+  animation: nodeAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* ── Canvas background radial ────────────────────────────────── */
+.zui-canvas-bg {
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(201, 162, 75, 0.04) 0%, transparent 60%),
+    var(--bg-base);
 }
