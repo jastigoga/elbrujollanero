@@ -3,21 +3,34 @@
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { services } from "@/content/services";
-import { TarotCard } from "./TarotCard";
+import { CategoryCard } from "./CategoryCard";
+import { CategoryDetail } from "./CategoryDetail";
 import { ServiceDetail } from "./ServiceDetail";
-import { SectionDivider } from "./SectionDivider";
 
 const CATEGORIES = [
-  { key: "amor", label: "Amor y Relaciones", accent: "#FB7185" },
-  { key: "proteccion", label: "Protección y Limpieza", accent: "#38BDF8" },
-  { key: "consulta", label: "Consulta y Orientación", accent: "#FBBF24" },
+  {
+    key: "amor",
+    label: "Amor y Relaciones",
+    description: "Recupera, fortalece y protege tus relaciones de pareja",
+  },
+  {
+    key: "proteccion",
+    label: "Protección y Limpieza",
+    description: "Elimina energías negativas y protege tu vida entera",
+  },
+  {
+    key: "consulta",
+    label: "Consulta y Orientación",
+    description: "Recibe claridad y guía espiritual para tus decisiones",
+  },
 ] as const;
 
 export function ServicesGrid() {
-  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedService, setSelectedService] = useState<string | null>(null);
 
   return (
-    <section id="servicios" className="relative py-20">
+    <section id="servicios" className="relative py-24">
       {/* Background glow */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -27,9 +40,9 @@ export function ServicesGrid() {
         }}
       />
 
-      <div className="relative mx-auto max-w-6xl px-6">
+      <div className="relative mx-auto max-w-5xl px-6">
         {/* Header */}
-        <div className="mb-14 text-center">
+        <div className="mb-16 text-center">
           <p className="mb-3 font-ui text-xs uppercase tracking-[3px] text-gold">
             Nuestros servicios
           </p>
@@ -37,58 +50,52 @@ export function ServicesGrid() {
             Elige tu camino
           </h2>
           <p className="mx-auto max-w-lg font-voice text-lg text-ivory-dim">
-            Cada carta revela un servicio sagrado. Haz clic para descubrir su poder.
+            Tres cartas del tarot revelan los caminos espirituales. Pasa el mouse
+            para descubrir, haz clic para entrar.
           </p>
         </div>
 
-        {/* Category sections */}
-        {CATEGORIES.map((cat, catIndex) => {
-          const categoryServices = services.filter(
-            (s) => s.category === cat.key,
-          );
-
-          return (
-            <div key={cat.key}>
-              {catIndex > 0 && (
-                <div className="my-12">
-                  <SectionDivider />
-                </div>
-              )}
-
-              {/* Category label */}
-              <div className="mb-8 flex items-center gap-4">
-                <div className="h-px flex-1" style={{ background: `${cat.accent}20` }} />
-                <h3
-                  className="font-display text-sm uppercase tracking-[2px]"
-                  style={{ color: cat.accent }}
-                >
-                  {cat.label}
-                </h3>
-                <div className="h-px flex-1" style={{ background: `${cat.accent}20` }} />
-              </div>
-
-              {/* Tarot cards grid */}
-              <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-                {categoryServices.map((service, i) => (
-                  <TarotCard
-                    key={service.slug}
-                    service={service}
-                    index={i}
-                    onClick={() => setSelectedSlug(service.slug)}
-                  />
-                ))}
-              </div>
-            </div>
-          );
-        })}
+        {/* 3 Tarot cards */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
+          {CATEGORIES.map((cat, i) => {
+            const catServices = services.filter((s) => s.category === cat.key);
+            return (
+              <CategoryCard
+                key={cat.key}
+                category={cat.key}
+                label={cat.label}
+                description={cat.description}
+                serviceCount={catServices.length}
+                serviceNames={catServices.map((s) => s.title)}
+                index={i}
+                onClick={() => setSelectedCategory(cat.key)}
+              />
+            );
+          })}
+        </div>
       </div>
 
-      {/* Service detail overlay */}
+      {/* Category detail overlay */}
       <AnimatePresence>
-        {selectedSlug && (
+        {selectedCategory && (
+          <CategoryDetail
+            category={selectedCategory}
+            services={services.filter((s) => s.category === selectedCategory)}
+            onClose={() => setSelectedCategory(null)}
+            onServiceClick={(slug) => {
+              setSelectedCategory(null);
+              setTimeout(() => setSelectedService(slug), 300);
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Individual service detail overlay */}
+      <AnimatePresence>
+        {selectedService && (
           <ServiceDetail
-            serviceSlug={selectedSlug}
-            onClose={() => setSelectedSlug(null)}
+            serviceSlug={selectedService}
+            onClose={() => setSelectedService(null)}
           />
         )}
       </AnimatePresence>
