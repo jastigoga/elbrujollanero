@@ -4,6 +4,221 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
 
+/* ── Mapa místico SVG ────────────────────────────────────────── */
+function MysticalMap() {
+  const runes = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, i) => ({
+        angle: (360 / 12) * i,
+        symbol: ["◈", "⬡", "☽", "✦", "⊕", "△", "☽", "✦", "⬡", "◈", "⊕", "△"][i],
+      })),
+    [],
+  );
+
+  const pathNodes = useMemo(
+    () =>
+      Array.from({ length: 8 }, (_, i) => {
+        const angle = (360 / 8) * i * (Math.PI / 180);
+        const r = 160 + Math.sin(i * 1.7) * 40;
+        return {
+          x: 400 + Math.cos(angle) * r,
+          y: 400 + Math.sin(angle) * r,
+        };
+      }),
+    [],
+  );
+
+  return (
+    <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+      <motion.svg
+        viewBox="0 0 800 800"
+        className="h-[min(100dvh,800px)] w-[min(100dvh,800px)]"
+        initial={{ opacity: 0, rotate: -10 }}
+        animate={{ opacity: 1, rotate: 0 }}
+        transition={{ duration: 3, ease: "easeOut" }}
+      >
+        <defs>
+          <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#C9A24B" stopOpacity="0.08" />
+            <stop offset="60%" stopColor="#C9A24B" stopOpacity="0.03" />
+            <stop offset="100%" stopColor="#C9A24B" stopOpacity="0" />
+          </radialGradient>
+          <filter id="softGlow">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Background glow */}
+        <circle cx="400" cy="400" r="380" fill="url(#mapGlow)" />
+
+        {/* ── Outer ring ── */}
+        <motion.circle
+          cx="400" cy="400" r="350"
+          stroke="#C9A24B" strokeWidth="0.5" fill="none" opacity="0.12"
+          strokeDasharray="4 8"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 240, repeat: Infinity, ease: "linear" }}
+          style={{ transformOrigin: "400px 400px" }}
+        />
+
+        {/* ── Second ring ── */}
+        <motion.circle
+          cx="400" cy="400" r="300"
+          stroke="#C9A24B" strokeWidth="0.6" fill="none" opacity="0.15"
+          strokeDasharray="2 12"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
+          style={{ transformOrigin: "400px 400px" }}
+        />
+
+        {/* ── Third ring ── */}
+        <circle cx="400" cy="400" r="240" stroke="#C9A24B" strokeWidth="0.4" fill="none" opacity="0.1" />
+
+        {/* ── Inner ring ── */}
+        <circle cx="400" cy="400" r="160" stroke="#C9A24B" strokeWidth="0.3" fill="none" opacity="0.08" />
+
+        {/* ── Core circle ── */}
+        <circle cx="400" cy="400" r="60" stroke="#C9A24B" strokeWidth="0.8" fill="none" opacity="0.15" />
+        <circle cx="400" cy="400" r="30" stroke="#C9A24B" strokeWidth="0.5" fill="none" opacity="0.1" />
+        <circle cx="400" cy="400" r="4" fill="#C9A24B" opacity="0.2" />
+
+        {/* ── Cardinal cross ── */}
+        {[0, 90, 180, 270].map((angle) => (
+          <line
+            key={`cardinal-${angle}`}
+            x1="400" y1="400"
+            x2={400 + Math.cos((angle * Math.PI) / 180) * 350}
+            y2={400 + Math.sin((angle * Math.PI) / 180) * 350}
+            stroke="#C9A24B" strokeWidth="0.3" opacity="0.08"
+          />
+        ))}
+
+        {/* ── Diagonal lines ── */}
+        {[45, 135, 225, 315].map((angle) => (
+          <line
+            key={`diag-${angle}`}
+            x1={400 + Math.cos((angle * Math.PI) / 180) * 80}
+            y1={400 + Math.sin((angle * Math.PI) / 180) * 80}
+            x2={400 + Math.cos((angle * Math.PI) / 180) * 350}
+            y2={400 + Math.sin((angle * Math.PI) / 180) * 350}
+            stroke="#C9A24B" strokeWidth="0.2" opacity="0.06"
+            strokeDasharray="2 6"
+          />
+        ))}
+
+        {/* ── Degree tick marks on outer ring ── */}
+        {Array.from({ length: 72 }, (_, i) => {
+          const angle = (360 / 72) * i;
+          const rad = (angle * Math.PI) / 180;
+          const isMajor = i % 6 === 0;
+          const inner = isMajor ? 340 : 345;
+          return (
+            <line
+              key={`tick-${i}`}
+              x1={400 + Math.cos(rad) * inner}
+              y1={400 + Math.sin(rad) * inner}
+              x2={400 + Math.cos(rad) * 350}
+              y2={400 + Math.sin(rad) * 350}
+              stroke="#C9A24B"
+              strokeWidth={isMajor ? "0.6" : "0.3"}
+              opacity={isMajor ? "0.15" : "0.08"}
+            />
+          );
+        })}
+
+        {/* ── Rune symbols around inner ring ── */}
+        {runes.map((r) => {
+          const rad = (r.angle * Math.PI) / 180;
+          const x = 400 + Math.cos(rad) * 200;
+          const y = 400 + Math.sin(rad) * 200;
+          return (
+            <text
+              key={`rune-${r.angle}`}
+              x={x}
+              y={y}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fill="#C9A24B"
+              opacity="0.12"
+              fontSize="11"
+              filter="url(#softGlow)"
+            >
+              {r.symbol}
+            </text>
+          );
+        })}
+
+        {/* ── Constellation-like path ── */}
+        <motion.path
+          d={`M ${pathNodes.map((n) => `${n.x},${n.y}`).join(" L ")} Z`}
+          stroke="#C9A24B"
+          strokeWidth="0.5"
+          fill="none"
+          opacity="0.08"
+          strokeDasharray="3 5"
+          animate={{ opacity: [0.06, 0.12, 0.06] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* ── Constellation nodes ── */}
+        {pathNodes.map((n, i) => (
+          <motion.circle
+            key={`node-${i}`}
+            cx={n.x}
+            cy={n.y}
+            r="2"
+            fill="#C9A24B"
+            animate={{ opacity: [0.1, 0.25, 0.1] }}
+            transition={{ duration: 4 + i * 0.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+        ))}
+
+        {/* ── Small decorative dots on rings ── */}
+        {Array.from({ length: 24 }, (_, i) => {
+          const angle = (360 / 24) * i;
+          const rad = (angle * Math.PI) / 180;
+          const r = i % 3 === 0 ? 300 : i % 2 === 0 ? 240 : 160;
+          return (
+            <circle
+              key={`dot-${i}`}
+              cx={400 + Math.cos(rad) * r}
+              cy={400 + Math.sin(rad) * r}
+              r="1.5"
+              fill="#C9A24B"
+              opacity="0.1"
+            />
+          );
+        })}
+
+        {/* ── Compass rose points ── */}
+        {[0, 72, 144, 216, 288].map((angle) => {
+          const rad = (angle * Math.PI) / 180;
+          const tip = 400 + Math.cos(rad) * 100;
+          const tipY = 400 + Math.sin(rad) * 100;
+          const left = 400 + Math.cos(rad - 0.3) * 50;
+          const leftY = 400 + Math.sin(rad - 0.3) * 50;
+          const right = 400 + Math.cos(rad + 0.3) * 50;
+          const rightY = 400 + Math.sin(rad + 0.3) * 50;
+          return (
+            <polygon
+              key={`rose-${angle}`}
+              points={`${tip},${tipY} ${left},${leftY} ${400},${400} ${right},${rightY}`}
+              fill="#C9A24B"
+              opacity="0.04"
+              stroke="#C9A24B"
+              strokeWidth="0.3"
+            />
+          );
+        })}
+      </motion.svg>
+    </div>
+  );
+}
+
 /* ── Partículas flotantes de fondo ───────────────────────────── */
 function FloatingParticles() {
   const particles = useMemo(
@@ -51,12 +266,15 @@ function FloatingParticles() {
 export function Hero() {
   return (
     <section className="relative flex h-[100dvh] w-full items-center justify-center overflow-hidden">
-      {/* Very subtle radial glow — constellation shows through */}
+      {/* Mapa místico de fondo */}
+      <MysticalMap />
+
+      {/* Sutil glow radial */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 55%, rgba(201,162,75,0.06) 0%, transparent 55%)",
+            "radial-gradient(ellipse at 50% 50%, rgba(201,162,75,0.04) 0%, transparent 50%)",
         }}
       />
 
