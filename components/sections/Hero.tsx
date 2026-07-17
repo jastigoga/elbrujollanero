@@ -39,12 +39,12 @@ function MysticalMap() {
       >
         <defs>
           <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#C9A24B" stopOpacity="0.08" />
-            <stop offset="60%" stopColor="#C9A24B" stopOpacity="0.03" />
+            <stop offset="0%" stopColor="#C9A24B" stopOpacity="0.2" />
+            <stop offset="50%" stopColor="#C9A24B" stopOpacity="0.08" />
             <stop offset="100%" stopColor="#C9A24B" stopOpacity="0" />
           </radialGradient>
           <filter id="softGlow">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feGaussianBlur stdDeviation="2" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -58,7 +58,7 @@ function MysticalMap() {
         {/* ── Outer ring ── */}
         <motion.circle
           cx="400" cy="400" r="350"
-          stroke="#C9A24B" strokeWidth="0.5" fill="none" opacity="0.12"
+          stroke="#C9A24B" strokeWidth="1" fill="none" opacity="0.3"
           strokeDasharray="4 8"
           animate={{ rotate: 360 }}
           transition={{ duration: 240, repeat: Infinity, ease: "linear" }}
@@ -68,7 +68,7 @@ function MysticalMap() {
         {/* ── Second ring ── */}
         <motion.circle
           cx="400" cy="400" r="300"
-          stroke="#C9A24B" strokeWidth="0.6" fill="none" opacity="0.15"
+          stroke="#C9A24B" strokeWidth="1.2" fill="none" opacity="0.35"
           strokeDasharray="2 12"
           animate={{ rotate: -360 }}
           transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
@@ -76,15 +76,15 @@ function MysticalMap() {
         />
 
         {/* ── Third ring ── */}
-        <circle cx="400" cy="400" r="240" stroke="#C9A24B" strokeWidth="0.4" fill="none" opacity="0.1" />
+        <circle cx="400" cy="400" r="240" stroke="#C9A24B" strokeWidth="0.8" fill="none" opacity="0.25" />
 
         {/* ── Inner ring ── */}
-        <circle cx="400" cy="400" r="160" stroke="#C9A24B" strokeWidth="0.3" fill="none" opacity="0.08" />
+        <circle cx="400" cy="400" r="160" stroke="#C9A24B" strokeWidth="0.6" fill="none" opacity="0.2" />
 
         {/* ── Core circle ── */}
-        <circle cx="400" cy="400" r="60" stroke="#C9A24B" strokeWidth="0.8" fill="none" opacity="0.15" />
-        <circle cx="400" cy="400" r="30" stroke="#C9A24B" strokeWidth="0.5" fill="none" opacity="0.1" />
-        <circle cx="400" cy="400" r="4" fill="#C9A24B" opacity="0.2" />
+        <circle cx="400" cy="400" r="60" stroke="#C9A24B" strokeWidth="1.5" fill="none" opacity="0.35" />
+        <circle cx="400" cy="400" r="30" stroke="#C9A24B" strokeWidth="1" fill="none" opacity="0.25" />
+        <circle cx="400" cy="400" r="5" fill="#C9A24B" opacity="0.4" />
 
         {/* ── Cardinal cross ── */}
         {[0, 90, 180, 270].map((angle) => (
@@ -93,7 +93,7 @@ function MysticalMap() {
             x1="400" y1="400"
             x2={400 + Math.cos((angle * Math.PI) / 180) * 350}
             y2={400 + Math.sin((angle * Math.PI) / 180) * 350}
-            stroke="#C9A24B" strokeWidth="0.3" opacity="0.08"
+            stroke="#C9A24B" strokeWidth="0.6" opacity="0.2"
           />
         ))}
 
@@ -105,7 +105,7 @@ function MysticalMap() {
             y1={400 + Math.sin((angle * Math.PI) / 180) * 80}
             x2={400 + Math.cos((angle * Math.PI) / 180) * 350}
             y2={400 + Math.sin((angle * Math.PI) / 180) * 350}
-            stroke="#C9A24B" strokeWidth="0.2" opacity="0.06"
+            stroke="#C9A24B" strokeWidth="0.4" opacity="0.15"
             strokeDasharray="2 6"
           />
         ))}
@@ -115,7 +115,7 @@ function MysticalMap() {
           const angle = (360 / 72) * i;
           const rad = (angle * Math.PI) / 180;
           const isMajor = i % 6 === 0;
-          const inner = isMajor ? 340 : 345;
+          const inner = isMajor ? 338 : 343;
           return (
             <line
               key={`tick-${i}`}
@@ -124,8 +124,8 @@ function MysticalMap() {
               x2={400 + Math.cos(rad) * 350}
               y2={400 + Math.sin(rad) * 350}
               stroke="#C9A24B"
-              strokeWidth={isMajor ? "0.6" : "0.3"}
-              opacity={isMajor ? "0.15" : "0.08"}
+              strokeWidth={isMajor ? "1" : "0.5"}
+              opacity={isMajor ? "0.35" : "0.18"}
             />
           );
         })}
@@ -143,8 +143,8 @@ function MysticalMap() {
               textAnchor="middle"
               dominantBaseline="central"
               fill="#C9A24B"
-              opacity="0.12"
-              fontSize="11"
+              opacity="0.35"
+              fontSize="14"
               filter="url(#softGlow)"
             >
               {r.symbol}
@@ -156,11 +156,11 @@ function MysticalMap() {
         <motion.path
           d={`M ${pathNodes.map((n) => `${n.x},${n.y}`).join(" L ")} Z`}
           stroke="#C9A24B"
-          strokeWidth="0.5"
+          strokeWidth="0.8"
           fill="none"
-          opacity="0.08"
+          opacity="0.2"
           strokeDasharray="3 5"
-          animate={{ opacity: [0.06, 0.12, 0.06] }}
+          animate={{ opacity: [0.15, 0.3, 0.15] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
 
@@ -170,9 +170,9 @@ function MysticalMap() {
             key={`node-${i}`}
             cx={n.x}
             cy={n.y}
-            r="2"
+            r="3"
             fill="#C9A24B"
-            animate={{ opacity: [0.1, 0.25, 0.1] }}
+            animate={{ opacity: [0.2, 0.5, 0.2] }}
             transition={{ duration: 4 + i * 0.5, repeat: Infinity, ease: "easeInOut" }}
           />
         ))}
@@ -187,9 +187,9 @@ function MysticalMap() {
               key={`dot-${i}`}
               cx={400 + Math.cos(rad) * r}
               cy={400 + Math.sin(rad) * r}
-              r="1.5"
+              r="2"
               fill="#C9A24B"
-              opacity="0.1"
+              opacity="0.25"
             />
           );
         })}
@@ -208,9 +208,9 @@ function MysticalMap() {
               key={`rose-${angle}`}
               points={`${tip},${tipY} ${left},${leftY} ${400},${400} ${right},${rightY}`}
               fill="#C9A24B"
-              opacity="0.04"
+              opacity="0.1"
               stroke="#C9A24B"
-              strokeWidth="0.3"
+              strokeWidth="0.5"
             />
           );
         })}
@@ -269,12 +269,12 @@ export function Hero() {
       {/* Mapa místico de fondo */}
       <MysticalMap />
 
-      {/* Sutil glow radial */}
+      {/* Glow detrás del texto para legibilidad */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none z-[2]"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 50%, rgba(201,162,75,0.04) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 50% 50%, rgba(10,10,11,0.7) 0%, rgba(10,10,11,0.3) 35%, transparent 60%)",
         }}
       />
 
