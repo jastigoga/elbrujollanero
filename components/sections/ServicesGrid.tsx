@@ -24,6 +24,11 @@ const CATEGORIES = [
     label: "Consulta y Orientación",
     description: "Recibe claridad y guía espiritual para tus decisiones",
   },
+  {
+    key: "ocultismo",
+    label: "Ocultismo y Magia Ceremonial",
+    description: "Dominio ancestral de los secretos ocultos y protección espiritual",
+  },
 ] as const;
 
 export function ServicesGrid() {
@@ -51,7 +56,7 @@ export function ServicesGrid() {
         }}
       />
 
-      <div className="relative mx-auto max-w-5xl px-6">
+      <div className="relative mx-auto max-w-6xl px-6">
         <div className="mb-16 text-center">
           <p className="mb-3 font-ui text-xs uppercase tracking-[3px] text-gold">
             Nuestros servicios
@@ -60,12 +65,12 @@ export function ServicesGrid() {
             Elige tu camino
           </h2>
           <p className="mx-auto max-w-lg font-voice text-lg text-ivory-dim">
-            Tres cartas del tarot revelan los caminos espirituales. Pasa el mouse
+            Cuatro cartas del tarot revelan los caminos espirituales. Pasa el mouse
             para descubrir, haz clic para entrar.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
           {CATEGORIES.map((cat, i) => {
             const catServices = services.filter((s) => s.category === cat.key);
             return (

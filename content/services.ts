@@ -248,6 +248,116 @@ export const services: Service[] = [
     whatsappMessageTemplate: "Hola, quiero informacion sobre Consultas espirituales",
     seo: { metaTitle: "Consultas espirituales | El Brujo Llanero", metaDescription: "Orientacion espiritual para resolver tus dudas. Primera consulta gratuita.", ogImage: "/images/servicios/consultas-espirituales.jpg", canonical: "/servicios/consultas-espirituales" },
   },
+  {
+    slug: "rituales-de-magia-ceremonial",
+    title: "Rituales de magia ceremonial",
+    category: "ocultismo",
+    shortDescription:
+      "Ceremonias de magia ancestral para canalizar fuerzas superiores y manifestar resultados con precision.",
+    longDescription:
+      "Los rituales de magia ceremonial son ceremonias de alto poder que combinan simbolos ancestrales, invocaciones y elementos rituales para canalizar fuerzas especificas. Cada ceremonia se disena segun la necesidad del consultante, utilizing los principios del ocultismo superior para lograr resultados concretos. Estos trabajos requieren un practicante con dominio absoluto de las artes oscuras y la proteccion espiritual.",
+    priceNote: "Consulta de valoracion: gratuita",
+    relatedSlugs: ["trabajos-con-fuerzas-oscuras", "rompimiento-de-maldiciones"],
+    process: [
+      { order: 1, title: "Preparacion ritual", description: "Se preparan los elementos y se crea el circulo de proteccion." },
+      { order: 2, title: "Invocacion", description: "Se canalizan las fuerzas espirituales necesarias para el trabajo." },
+      { order: 3, title: "Sellado", description: "Se cierra el ritual y se estabilizan las energias manifestadas." },
+    ],
+    benefits: ["Magia ceremonial autentica", "Circulo de proteccion", "Seguimiento post-ritual"],
+    testimonials: [
+      { id: "t12", quote: "El ritual cambio mi vida por completo. Las fuerzas que invoco son reales.", authorInitials: "V.R.", relatedServiceSlug: "rituales-de-magia-ceremonial" },
+    ],
+    whatsappMessageTemplate: "Hola, quiero informacion sobre Rituales de magia ceremonial",
+    seo: { metaTitle: "Rituales de magia ceremonial | El Brujo Llanero", metaDescription: "Magia ancestral y ceremonial con resultados comprobables. Consulta gratuita.", ogImage: "/images/servicios/rituales-de-magia-ceremonial.jpg", canonical: "/servicios/rituales-de-magia-ceremonial" },
+  },
+  {
+    slug: "trabajos-con-fuerzas-oscuras",
+    title: "Trabajos con fuerzas oscuras",
+    category: "ocultismo",
+    shortDescription:
+      "Dominio de las fuerzas oscuras para proteccion, repeler ataques y equilibrar energias del咨询ante.",
+    longDescription:
+      "El dominio de las fuerzas oscuras es una de las artes mas complejas del ocultismo. No se trata de mal sino de comprender y dominar las energias que existen fuera de la luz para usarlas en proteccion y equilibrio. El Brujo Llanero tiene anos de experiencia trabajando con estas fuerzas, garantizando que cada trabajo se realiza con responsabilidad y fines protectores.",
+    priceNote: "Consulta de valoracion: gratuita",
+    relatedSlugs: ["rituales-de-magia-ceremonial", "proteccion-contra-brujeria"],
+    process: [
+      { order: 1, title: "Diagnostico espiritual", description: "Se evalua la situacion y se determina si el trabajo es necesario." },
+      { order: 2, title: "Trabajo de fuerzas", description: "Se canalizan las fuerzas oscuras bajo estricto control espiritual." },
+      { order: 3, title: "Restablecimiento", description: "Se asegura el equilibrio energetico del consultante despues del trabajo." },
+    ],
+    benefits: ["Experiencia comprobada", "Control total de fuerzas", " fines protectores"],
+    testimonials: [
+      { id: "t13", quote: "Pensaba que era algo negativo, pero fue la mejor proteccion que recibi.", authorInitials: "G.P.", relatedServiceSlug: "trabajos-con-fuerzas-oscuras" },
+    ],
+    whatsappMessageTemplate: "Hola, quiero informacion sobre Trabajos con fuerzas oscuras",
+    seo: { metaTitle: "Trabajos con fuerzas oscuras | El Brujo Llanero", metaDescription: "Dominio de fuerzas oscuras para proteccion y equilibrio. Consulta gratuita.", ogImage: "/images/servicios/trabajos-con-fuerzas-oscuras.jpg", canonical: "/servicios/trabajos-con-fuerzas-oscuras" },
+  },
+  {
+    slug: "curanderismo-y-limpieza-energetica",
+    title: "Curanderismo y limpieza energetica",
+    category: "ocultismo",
+    shortDescription:
+      "Trabajo tradicional de curanderismo con limpieza energetica profunda para restaurar el equilibrio.",
+    longDescription:
+      "El curanderismo es una tradicion ancestral que combina el uso de hierbas, oraciones y tecnicas energeticas para curar el cuerpo y el espiritu. Esta practica, transmitida por generaciones, trabaja directamente sobre las causas espirituales de los problemas fisicos y emocionales. La limpieza energetica que acompaña el curanderismo elimina las cargas negativas y restaura la salud holistica del consultante.",
+    priceNote: "Consulta de valoracion: gratuita",
+    relatedSlugs: ["limpias-espirituales", "rompimiento-de-maldiciones"],
+    process: [
+      { order: 1, title: "Lectura espiritual", description: "Se identifican las causas espirituales del problema." },
+      { order: 2, title: "Curanderismo", description: "Se aplican tecnicas ancestrales de limpieza y curacion." },
+      { order: 3, title: "Restauracion", description: "Se guia al consultante en su proceso de recuperacion." },
+    ],
+    benefits: ["Tradicion ancestral", "Limpieza integral", "Seguimiento cercano"],
+    testimonials: [
+      { id: "t14", quote: "El curanderismo me devolvio la salud que habia perdido.", authorInitials: "M.C.", relatedServiceSlug: "curanderismo-y-limpieza-energetica" },
+    ],
+    whatsappMessageTemplate: "Hola, quiero informacion sobre Curanderismo y limpieza energetica",
+    seo: { metaTitle: "Curanderismo y limpieza energetica | El Brujo Llanero", metaDescription: "Curanderismo ancestral con limpieza energetica profunda. Consulta gratuita.", ogImage: "/images/servicios/curanderismo-y-limpieza-energetica.jpg", canonical: "/servicios/curanderismo-y-limpieza-energetica" },
+  },
+  {
+    slug: "rompimiento-de-maldiciones",
+    title: "Rompimiento de maldiciones",
+    category: "ocultismo",
+    shortDescription:
+      "Trabajo espiritual de alta potencia para romper maldiciones, hechizos y cualquier ataque espiritual.",
+    longDescription:
+      "Las maldiciones son trabajos espirituales negativos que una persona envia para afectar la vida de otra. Pueden manifestarse como mala suerte constante, problemas de salud, fracaso economico o ruptura de relaciones. El rompimiento de maldiciones es un trabajo de alta potencia que identifica y destruye cualquier hechizo, sin importar su antiguedad o intensidad. El Brujo Llanero ha roto maldiciones de todo tipo con resultados contundentes.",
+    priceNote: "Consulta de valoracion: gratuita",
+    relatedSlugs: ["corte-de-brujeria", "proteccion-contra-brujeria"],
+    process: [
+      { order: 1, title: "Identificacion", description: "Se diagnostica la maldicion y su origen." },
+      { order: 2, title: "Rompimiento", description: "Se ejecuta el trabajo de alta potencia para destruir la maldicion." },
+      { order: 3, title: "Proteccion", description: "Se protege al consultante contra futuros ataques similares." },
+    ],
+    benefits: ["Maldiciones de cualquier tipo", "Alta potencia", "Proteccion incluida"],
+    testimonials: [
+      { id: "t15", quote: "Llevaba anos sufriendo una maldicion familiar. El Brujo me libero por completo.", authorInitials: "J.L.", relatedServiceSlug: "rompimiento-de-maldiciones" },
+    ],
+    whatsappMessageTemplate: "Hola, quiero informacion sobre Rompimiento de maldiciones",
+    seo: { metaTitle: "Rompimiento de maldiciones | El Brujo Llanero", metaDescription: "Rompe cualquier maldicion con trabajo espiritual de alta potencia. Consulta gratuita.", ogImage: "/images/servicios/rompimiento-de-maldiciones.jpg", canonical: "/servicios/rompimiento-de-maldiciones" },
+  },
+  {
+    slug: "proteccion-contra-brujeria",
+    title: "Proteccion contra brujeria",
+    category: "ocultismo",
+    shortDescription:
+      "Escudo espiritual avanzado para proteger tu vida de cualquier forma de brujeria, hechizo o ataque espiritual.",
+    longDescription:
+      "La proteccion contra brujeria es un trabajo espiritual de alto nivel que crea un escudo energetico avanzado alrededor del consultante, su familia y sus bienes. Este escudo no solo repele la brujeria existente sino que previene futuros ataques. El Brujo Llanero utiliza tecnicas de proteccion que incluyen amarras, limpiezas y rituales de sellado que garantizan una proteccion duradera e inquebrantable.",
+    priceNote: "Consulta de valoracion: gratuita",
+    relatedSlugs: ["corte-de-brujeria", "limpias-espirituales"],
+    process: [
+      { order: 1, title: "Evaluacion", description: "Se analizan las vulnerabilidades espirituales del consultante." },
+      { order: 2, title: "Proteccion avanzada", description: "Se crea el escudo espiritual con tecnicas de alto nivel." },
+      { order: 3, title: "Mantenimiento", description: "Se refuerza periodicamente la proteccion para mantenerla activa." },
+    ],
+    benefits: ["Proteccion avanzada", "Para ti y tu familia", "Prevencion y correctivo"],
+    testimonials: [
+      { id: "t16", quote: "Despues de la proteccion, la brujeria que me afectaba desaparecio por completo.", authorInitials: "R.A.", relatedServiceSlug: "proteccion-contra-brujeria" },
+    ],
+    whatsappMessageTemplate: "Hola, quiero informacion sobre Proteccion contra brujeria",
+    seo: { metaTitle: "Proteccion contra brujeria | El Brujo Llanero", metaDescription: "Proteccion espiritual avanzada contra brujeria y ataques. Consulta gratuita.", ogImage: "/images/servicios/proteccion-contra-brujeria.jpg", canonical: "/servicios/proteccion-contra-brujeria" },
+  },
 ];
 
 export function getServiceBySlug(slug: string): Service | undefined {

@@ -1,4 +1,4 @@
-export type ServiceCategory = "amor" | "proteccion" | "consulta";
+export type ServiceCategory = "amor" | "proteccion" | "consulta" | "ocultismo";
 
 export interface ProcessStep {
   order: number;

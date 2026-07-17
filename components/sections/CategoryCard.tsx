@@ -15,6 +15,8 @@ import {
   Lock,
   Circle,
   Sparkles,
+  Skull,
+  Hexagon,
   type LucideIcon,
 } from "lucide-react";
 import { CATEGORY_COLORS } from "@/flows/siteFlow.config";
@@ -23,6 +25,7 @@ const DECO_ICONS: Record<string, LucideIcon[]> = {
   amor: [Heart, Moon, Sparkles, Stars, Flame, Crown],
   proteccion: [Shield, Lock, Swords, Zap, Circle, Shield],
   consulta: [Eye, Sparkles, Stars, Moon, Flame, Crown],
+  ocultismo: [Skull, Moon, Hexagon, Flame, Stars, Crown],
 };
 
 function getDecoIcon(category: string, index: number): LucideIcon {
@@ -57,7 +60,9 @@ export function CategoryCard({
       ? Heart
       : category === "proteccion"
         ? Shield
-        : Eye;
+        : category === "ocultismo"
+          ? Skull
+          : Eye;
 
   const handleTouchStart = useCallback(() => {
     touchUsed.current = true;

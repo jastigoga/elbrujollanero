@@ -15,7 +15,7 @@ export interface SiteNodeData extends Record<string, unknown> {
   level: ZuiLevel;
   routeHref?: string;
   icon?: string;
-  category?: "amor" | "proteccion" | "consulta";
+  category?: "amor" | "proteccion" | "consulta" | "ocultismo";
 }
 
 export type SiteNode = Node<SiteNodeData>;

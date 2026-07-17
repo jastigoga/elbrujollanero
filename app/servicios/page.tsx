@@ -21,6 +21,7 @@ const CATEGORY_ACCENT: Record<string, string> = {
   amor: "#FB7185",
   proteccion: "#38BDF8",
   consulta: "#FBBF24",
+  ocultismo: "#A855F7",
 };
 
 export default function ServiciosPage() {

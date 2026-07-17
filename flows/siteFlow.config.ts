@@ -6,6 +6,7 @@ export const CATEGORY_COLORS: Record<string, string> = {
   amor: "#FB7185",
   proteccion: "#38BDF8",
   consulta: "#FBBF24",
+  ocultismo: "#A855F7",
 };
 
 /* ── Hub positions — pentágono amplio alrededor del centro ─────── */
@@ -62,6 +63,7 @@ export const hubNodes: SiteNode[] = [
 const AMOR_SERVICES = services.filter((s) => s.category === "amor");
 const PROT_SERVICES = services.filter((s) => s.category === "proteccion");
 const CONS_SERVICES = services.filter((s) => s.category === "consulta");
+const OCUL_SERVICES = services.filter((s) => s.category === "ocultismo");
 
 function fanLayout(
   items: typeof services,
@@ -98,9 +100,10 @@ function fanLayout(
 const amorNodes = fanLayout(AMOR_SERVICES, 210, 120, 360, HUB.servicios);
 const protNodes = fanLayout(PROT_SERVICES, 330, 60, 360, HUB.servicios);
 const consNodes = fanLayout(CONS_SERVICES, 30, 30, 360, HUB.servicios);
+const oculNodes = fanLayout(OCUL_SERVICES, 120, 40, 360, HUB.servicios);
 
 /* ── Service nodes — exportados para uso independiente ─────────── */
-export const serviceNodes: SiteNode[] = [...amorNodes, ...protNodes, ...consNodes];
+export const serviceNodes: SiteNode[] = [...amorNodes, ...protNodes, ...consNodes, ...oculNodes];
 
 /* ── Edges ────────────────────────────────────────────────────── */
 
