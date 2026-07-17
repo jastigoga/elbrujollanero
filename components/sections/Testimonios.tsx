@@ -31,7 +31,7 @@ const TESTIMONIOS = [
       "Una tercera persona estaba arruinando mi relación. La protección espiritual me dio paz y seguridad.",
     service: "Protección espiritual",
     category: "proteccion",
-    accent: "#38BDF8",
+    accent: "#A855F7",
     rating: 5,
   },
   {
