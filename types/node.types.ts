@@ -13,8 +13,9 @@ export interface SiteNodeData extends Record<string, unknown> {
   label: string;
   subtitle?: string;
   level: ZuiLevel;
-  routeHref?: string; // ruta SSR real que respalda este nodo (ver Fase 1, 2.2)
+  routeHref?: string;
   icon?: string;
+  category?: "amor" | "proteccion" | "consulta";
 }
 
 export type SiteNode = Node<SiteNodeData>;

@@ -3,26 +3,31 @@
 import Link from "next/link";
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import { motion } from "framer-motion";
-import { nodeHover } from "@/animations/variants";
 import type { SiteNodeData } from "@/types/node.types";
+import { CATEGORY_COLORS } from "@/flows/siteFlow.config";
 
-/**
- * Nodo de servicio (Z1 -> Z2). Al hacer click/tap navega a la ruta SSR real
- * del servicio (ver Fase 1, seccion 2.2 - arquitectura de doble capa),
- * lo que mantiene el contenido indexable incluso fuera del canvas.
- */
 export function ServiceNode({ data }: NodeProps & { data: SiteNodeData }) {
+  const accent = CATEGORY_COLORS[data.category ?? ""] ?? "#52525B";
+
   return (
-    <motion.div variants={nodeHover} initial="rest" whileHover="hover">
-      <Link
-        href={data.routeHref ?? "#"}
-        className="block w-[150px] rounded-card border border-border bg-carbon p-3 text-center transition-colors hover:border-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-soft"
+    <Link href={data.routeHref ?? "#"} className="block outline-none">
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.15 }}
+        className="w-[150px] overflow-hidden rounded-xl border border-border bg-carbon text-center shadow-md transition-all duration-200 hover:border-gold/60 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-soft"
+        style={{ borderLeftWidth: 3, borderLeftColor: accent }}
       >
-        <Handle type="target" position={Position.Top} className="opacity-0 pointer-events-none" />
-        <div className="font-ui text-[12px] font-semibold text-ivory">{data.label}</div>
-        {data.subtitle && <div className="mt-1 text-[10px] text-gold-soft">{data.subtitle}</div>}
-        <Handle type="source" position={Position.Bottom} className="opacity-0 pointer-events-none" />
-      </Link>
-    </motion.div>
+        <Handle type="target" position={Position.Top} className="!opacity-0 !pointer-events-none" />
+
+        <div className="px-3 py-3">
+          <div className="font-ui text-[12px] font-semibold text-ivory leading-tight">{data.label}</div>
+          {data.subtitle && (
+            <div className="mt-1 text-[10px] text-ivory-dim">{data.subtitle}</div>
+          )}
+        </div>
+
+        <Handle type="source" position={Position.Bottom} className="!opacity-0 !pointer-events-none" />
+      </motion.div>
+    </Link>
   );
 }
