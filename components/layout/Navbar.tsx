@@ -32,12 +32,12 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <a
-            href="#contacto"
+          <Link
+            href="/contacto"
             className="rounded-full bg-gold/10 px-4 py-2 font-ui text-xs font-medium text-gold transition-all duration-200 hover:bg-gold/20 hover:text-gold-soft"
           >
             Consulta gratis
-          </a>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -64,13 +64,13 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href="#contacto"
+            <Link
+              href="/contacto"
               onClick={() => setMobileOpen(false)}
               className="mt-2 block rounded-full bg-gold/10 py-3 text-center font-ui text-sm font-medium text-gold"
             >
               Consulta gratis
-            </a>
+            </Link>
           </div>
         </div>
       )}

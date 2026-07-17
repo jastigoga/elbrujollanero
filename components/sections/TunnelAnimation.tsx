@@ -1,11 +1,15 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CATEGORY_COLORS } from "@/flows/siteFlow.config";
 
-const LINES = 40;
-const RINGS = 7;
-const PARTICLES = 30;
+const MOBILE_LINES = 20;
+const MOBILE_RINGS = 4;
+const MOBILE_PARTICLES = 12;
+const DESKTOP_LINES = 40;
+const DESKTOP_RINGS = 7;
+const DESKTOP_PARTICLES = 30;
 
 export function TunnelAnimation({
   category,
@@ -15,6 +19,18 @@ export function TunnelAnimation({
   onDone: () => void;
 }) {
   const accent = CATEGORY_COLORS[category] ?? "#C9A24B";
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const LINES = mobile ? MOBILE_LINES : DESKTOP_LINES;
+  const RINGS = mobile ? MOBILE_RINGS : DESKTOP_RINGS;
+  const PARTICLES = mobile ? MOBILE_PARTICLES : DESKTOP_PARTICLES;
 
   return (
     <motion.div
@@ -33,7 +49,7 @@ export function TunnelAnimation({
         transition={{ duration: 4.0, times: [0, 0.04, 0.12, 0.82, 0.93, 1] }}
       />
 
-      {/* ═══ Fase 2: Primera ráfaga — líneas radiales lentas ═══ */}
+      {/* ═══ Fase 2: Líneas radiales ═══ */}
       <div className="absolute inset-0">
         {Array.from({ length: LINES }).map((_, i) => {
           const angle = (360 / LINES) * i;
@@ -61,10 +77,10 @@ export function TunnelAnimation({
         })}
       </div>
 
-      {/* ═══ Fase 3: Segunda ráfaga — líneas más rápidas y densas ═══ */}
+      {/* ═══ Fase 3: Líneas secundarias ═══ */}
       <div className="absolute inset-0">
-        {Array.from({ length: 24 }).map((_, i) => {
-          const angle = (360 / 24) * i + 7.5;
+        {Array.from({ length: Math.floor(LINES * 0.6) }).map((_, i) => {
+          const angle = (360 / Math.floor(LINES * 0.6)) * i + 7.5;
           return (
             <motion.div
               key={`line2-${i}`}
@@ -114,7 +130,7 @@ export function TunnelAnimation({
         />
       ))}
 
-      {/* ═══ Fase 5: Centro glow pulsante ═══ */}
+      {/* ═══ Fase 5: Centro glow ═══ */}
       <motion.div
         className="absolute rounded-full"
         style={{
@@ -132,7 +148,7 @@ export function TunnelAnimation({
         transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      {/* ═══ Fase 6: Glow secundario pulsante ═══ */}
+      {/* ═══ Fase 6: Glow secundario ═══ */}
       <motion.div
         className="absolute rounded-full"
         style={{
@@ -150,7 +166,7 @@ export function TunnelAnimation({
         transition={{ duration: 3.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      {/* ═══ Fase 7: Partículas místicas ═══ */}
+      {/* ═══ Fase 7: Partículas ═══ */}
       {Array.from({ length: PARTICLES }).map((_, i) => {
         const angle = (360 / PARTICLES) * i;
         const rad = (angle * Math.PI) / 180;
@@ -184,7 +200,7 @@ export function TunnelAnimation({
         );
       })}
 
-      {/* ═══ Fase 8: Símbolo místico central ═══ */}
+      {/* ═══ Fase 8: Símbolo místico ═══ */}
       <motion.svg
         width="160"
         height="160"
@@ -220,7 +236,7 @@ export function TunnelAnimation({
         transition={{ duration: 1.0, delay: 3.0 }}
       />
 
-      {/* ═══ Fase 10: Tercera ráfaga — vortex final ═══ */}
+      {/* ═══ Fase 10: Vortex ═══ */}
       <div className="absolute inset-0">
         {Array.from({ length: 20 }).map((_, i) => {
           const angle = (360 / 20) * i + 9;
@@ -248,7 +264,7 @@ export function TunnelAnimation({
         })}
       </div>
 
-      {/* ═══ Fase 11: Escalar todo hacia el centro (zoom warp) ═══ */}
+      {/* ═══ Fase 11: Warp zoom ═══ */}
       <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0 }}
@@ -270,7 +286,7 @@ export function TunnelAnimation({
             rotate: [0, 180],
             opacity: [0, 0.5, 0],
           }}
-          transition={{             duration: 3.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 3.2, ease: [0.16, 1, 0.3, 1] }}
         />
       </motion.div>
     </motion.div>

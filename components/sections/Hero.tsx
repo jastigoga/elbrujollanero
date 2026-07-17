@@ -1,18 +1,23 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
 
 /* ── Partículas flotantes de fondo ───────────────────────────── */
 function FloatingParticles() {
-  const particles = Array.from({ length: 18 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 3 + 1,
-    delay: Math.random() * 6,
-    duration: Math.random() * 8 + 6,
-  }));
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 18 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 3 + 1,
+        delay: Math.random() * 6,
+        duration: Math.random() * 8 + 6,
+      })),
+    [],
+  );
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -45,7 +50,7 @@ function FloatingParticles() {
 /* ── Hero ───────────────────────────────────────────────────── */
 export function Hero() {
   return (
-    <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+    <section className="relative flex h-[100dvh] w-full items-center justify-center overflow-hidden">
       {/* Very subtle radial glow — constellation shows through */}
       <div
         className="absolute inset-0 pointer-events-none"

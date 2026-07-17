@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-
-const WHATSAPP_NUMBER = "PENDIENTE_DEFINIR";
+import { WHATSAPP_NUMBER } from "@/lib/constants";
 
 export function Footer() {
   return (

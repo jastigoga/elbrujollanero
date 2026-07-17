@@ -12,7 +12,7 @@ export function ContactSection() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=1920&q=60')",
+            "url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=400&q=40')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: 0.04,

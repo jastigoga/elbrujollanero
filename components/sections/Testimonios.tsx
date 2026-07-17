@@ -139,7 +139,7 @@ export function Testimonios() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=1920&q=60')",
+            "url('https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=400&q=40')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: 0.04,

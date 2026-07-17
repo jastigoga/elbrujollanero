@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
   Heart,
@@ -50,6 +50,7 @@ export function CategoryCard({
   onClick: () => void;
 }) {
   const [flipped, setFlipped] = useState(false);
+  const touchUsed = useRef(false);
   const accent = CATEGORY_COLORS[category] ?? "#C9A24B";
   const MainIcon =
     category === "amor"
@@ -57,6 +58,25 @@ export function CategoryCard({
       : category === "proteccion"
         ? Shield
         : Eye;
+
+  const handleTouchStart = useCallback(() => {
+    touchUsed.current = true;
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      if (!touchUsed.current) return;
+      e.preventDefault();
+      setFlipped((prev) => !prev);
+      touchUsed.current = false;
+    },
+    [],
+  );
+
+  const handleClick = useCallback(() => {
+    if (touchUsed.current) return;
+    onClick();
+  }, [onClick]);
 
   return (
     <motion.div
@@ -66,7 +86,7 @@ export function CategoryCard({
       transition={{ delay: index * 0.15, duration: 0.6 }}
       className="group cursor-pointer"
       style={{ perspective: "1200px" }}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <div
         className="relative w-full"
@@ -78,12 +98,18 @@ export function CategoryCard({
             : "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
           transform: isZooming ? "scale(1.3)" : undefined,
         }}
-        onMouseEnter={() => setFlipped(true)}
-        onMouseLeave={() => setFlipped(false)}
+        onMouseEnter={() => {
+          if (!touchUsed.current) setFlipped(true);
+        }}
+        onMouseLeave={() => {
+          if (!touchUsed.current) setFlipped(false);
+        }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         {/* ══════ FRENTE ══════ */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden"
+          className="absolute inset-0 overflow-hidden"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -101,7 +127,6 @@ export function CategoryCard({
               className="relative overflow-hidden rounded-[14px] bg-base"
               style={{ height: "calc(100% - 2px)" }}
             >
-              {/* Corner ornaments */}
               <div className="pointer-events-none absolute inset-0 z-10">
                 <svg className="absolute left-3 top-3 h-5 w-5 opacity-30" viewBox="0 0 20 20">
                   <path d="M0 0L8 0L8 2L2 2L2 8L0 8Z" fill={accent} />
@@ -174,7 +199,7 @@ export function CategoryCard({
 
         {/* ══════ REVERSO ══════ */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden"
+          className="absolute inset-0 overflow-hidden"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
