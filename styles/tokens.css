@@ -87,9 +87,8 @@
   animation: glowPulse 3s ease-in-out infinite;
 }
 
-/* ── Canvas background radial ────────────────────────────────── */
-.zui-canvas-bg {
-  background:
-    radial-gradient(ellipse at 50% 40%, rgba(201, 162, 75, 0.04) 0%, transparent 60%),
-    var(--bg-base);
+/* ── Shimmer para tarot cards ───────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

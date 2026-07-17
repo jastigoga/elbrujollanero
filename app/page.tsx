@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloating } from "@/components/layout/WhatsAppFloating";
+import { ConstellationBackground } from "@/components/layout/ConstellationBackground";
 import { Hero } from "@/components/sections/Hero";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Testimonios } from "@/components/sections/Testimonios";
@@ -14,8 +14,9 @@ import { SectionDivider } from "@/components/sections/SectionDivider";
 export default function HomePage() {
   return (
     <div className="relative min-h-screen bg-base">
+      <ConstellationBackground />
       <Navbar />
-      <main id="contenido-principal">
+      <main id="contenido-principal" className="relative z-10">
         <Hero />
         <SectionDivider />
         <ServicesGrid />
