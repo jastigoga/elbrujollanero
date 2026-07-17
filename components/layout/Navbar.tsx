@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -16,9 +17,19 @@ export function Navbar() {
 
   return (
     <nav className="fixed inset-x-0 top-0 z-30 border-b border-border/50 bg-base/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
-        <Link href="/" className="font-display text-lg tracking-wide text-gold-soft">
-          EL BRUJO LLANERO
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 sm:px-10">
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image
+            src="/images/logo-brujo.png"
+            alt="El Brujo Llanero"
+            width={36}
+            height={36}
+            className="rounded-full"
+            priority
+          />
+          <span className="font-display text-lg tracking-wide text-gold-soft">
+            EL BRUJO LLANERO
+          </span>
         </Link>
 
         {/* Desktop nav */}

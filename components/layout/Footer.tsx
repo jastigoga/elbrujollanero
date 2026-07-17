@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
 
 export function Footer() {
@@ -8,8 +9,17 @@ export function Footer() {
     <footer className="border-t border-border bg-base px-6 py-10 sm:px-10">
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-3">
         <div>
-          <Link href="/" className="font-display text-lg tracking-wide text-gold-soft">
-            EL BRUJO LLANERO
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image
+              src="/images/logo-brujo.png"
+              alt="El Brujo Llanero"
+              width={32}
+              height={32}
+              className="rounded-full"
+            />
+            <span className="font-display text-lg tracking-wide text-gold-soft">
+              EL BRUJO LLANERO
+            </span>
           </Link>
           <p className="mt-3 text-xs leading-relaxed text-ivory-dim">
             Consultas espirituales serias y confidenciales. Maestro Supremo del Ocultismo.
