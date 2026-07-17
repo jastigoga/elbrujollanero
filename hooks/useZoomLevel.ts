@@ -1,19 +1,25 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import type { ZuiLevel } from "@/types/node.types";
+import { useStore } from "@xyflow/react";
 
 /**
- * Sincroniza el nivel de zoom logico (Z0..Z4) con el viewport real de XYFlow.
- * La UI externa al canvas (navbar, breadcrumbs) lee este estado para reaccionar
- * sin necesidad de acoplarse directamente a la libreria de canvas.
+ * Devuelve el nivel de zoom actual del canvas ZUI.
+ * Se usa para que los nodos muestren más/menos contenido
+ * según cuánto haya hecho zoom el usuario.
+ *
+ * Niveles:
+ *  - < 0.4  → Compacto (solo título)
+ *  - 0.4-0.8 → Medio (título + subtítulo)
+ *  - > 0.8  → Expandido (título + subtítulo + descripción)
  */
-export function useZoomLevel(initial: ZuiLevel = "Z0") {
-  const [level, setLevel] = useState<ZuiLevel>(initial);
+export function useZoomLevel(): number {
+  return useStore((s) => s.transform[2]);
+}
 
-  const goTo = useCallback((next: ZuiLevel) => {
-    setLevel(next);
-  }, []);
+export type ZoomTier = "compact" | "medium" | "expanded";
 
-  return { level, goTo };
+export function getZoomTier(zoom: number): ZoomTier {
+  if (zoom < 0.4) return "compact";
+  if (zoom < 0.8) return "medium";
+  return "expanded";
 }

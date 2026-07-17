@@ -8,11 +8,13 @@ import {
   MiniMap,
   useReactFlow,
   type NodeTypes,
+  type NodeMouseHandler,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { siteFlow } from "@/flows/siteFlow.config";
 import { HubNode } from "@/nodes/HubNode";
 import { ServiceNode } from "@/nodes/ServiceNode";
+import { ServiceDetailPanel } from "@/components/sections/ServiceDetailPanel";
 
 const nodeTypes: NodeTypes = {
   hub: HubNode,
@@ -64,21 +66,33 @@ function ZoomControls() {
 /* ── Hint de interacción ──────────────────────────────────────── */
 function InteractionHint() {
   const [visible, setVisible] = useState(true);
-
   if (!visible) return null;
-
   return (
     <div
       className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 cursor-pointer rounded-full border border-border bg-base/80 px-4 py-1.5 text-[11px] text-ivory-dim backdrop-blur transition-opacity duration-500 hover:text-ivory"
       onClick={() => setVisible(false)}
     >
-      Scroll para zoom · Arrastra para mover · Click para explorar
+      Scroll para zoom · Arrastra para mover · Click en un nodo para explorar
     </div>
   );
 }
 
 /* ── Canvas interior ──────────────────────────────────────────── */
 function CanvasInner() {
+  const [selectedService, setSelectedService] = useState<string | null>(null);
+
+  const handleNodeClick: NodeMouseHandler = useCallback((_, node) => {
+    if (node.type === "service") {
+      const slug = (node.data as Record<string, unknown>)?.routeHref
+        ?.toString()
+        .split("/")
+        .pop();
+      if (slug) setSelectedService(slug);
+    }
+  }, []);
+
+  const handleClose = useCallback(() => setSelectedService(null), []);
+
   return (
     <>
       <ReactFlow
@@ -95,6 +109,7 @@ function CanvasInner() {
         fitView
         fitViewOptions={{ padding: 0.15 }}
         proOptions={{ hideAttribution: true }}
+        onNodeClick={handleNodeClick}
       >
         <Background color="#27272A" gap={32} size={1} />
         <MiniMap
@@ -115,6 +130,7 @@ function CanvasInner() {
       </ReactFlow>
       <ZoomControls />
       <InteractionHint />
+      <ServiceDetailPanel serviceSlug={selectedService} onClose={handleClose} />
     </>
   );
 }
@@ -124,7 +140,7 @@ export function ZuiCanvas() {
   return (
     <div
       role="application"
-      aria-label="Mapa de navegación del sitio. Use los controles de zoom o scroll para explorar."
+      aria-label="Mapa de navegación del sitio. Use los controles de zoom o scroll para explorar. Haga click en un nodo de servicio para ver detalles."
       className="relative h-[420px] sm:h-[500px] lg:h-[580px] w-full overflow-hidden rounded-card border border-border bg-base"
     >
       <ReactFlowProvider>
