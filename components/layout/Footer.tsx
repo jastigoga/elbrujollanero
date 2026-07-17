@@ -40,7 +40,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-xs text-ivory-dim transition-colors hover:text-ivory"
               >
-                WhatsApp: PENDIENTE_DEFINIR
+                WhatsApp: +57 312 5310548
               </a>
             </li>
             <li className="text-xs text-ivory-dim">Consulta gratuita</li>
