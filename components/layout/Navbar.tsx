@@ -15,8 +15,8 @@ export function Navbar({
   simpleMode,
   onToggleSimpleMode,
 }: {
-  simpleMode: boolean;
-  onToggleSimpleMode: () => void;
+  simpleMode?: boolean;
+  onToggleSimpleMode?: () => void;
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -37,33 +37,37 @@ export function Navbar({
               {link.label}
             </Link>
           ))}
-          <button
-            onClick={onToggleSimpleMode}
-            aria-pressed={simpleMode}
-            className="rounded-full border px-3 py-1.5 font-ui text-xs transition-all duration-200 ease-out"
-            style={{
-              borderColor: simpleMode ? "var(--gold)" : "var(--border)",
-              color: simpleMode ? "var(--gold)" : "var(--ivory-dim)",
-              backgroundColor: simpleMode ? "rgba(201, 162, 75, 0.1)" : "transparent",
-            }}
-          >
-            {simpleMode ? "Explorar mapa" : "Vista simple"}
-          </button>
+          {onToggleSimpleMode && (
+            <button
+              onClick={onToggleSimpleMode}
+              aria-pressed={simpleMode}
+              className="rounded-full border px-3 py-1.5 font-ui text-xs transition-all duration-200 ease-out"
+              style={{
+                borderColor: simpleMode ? "var(--gold)" : "var(--border)",
+                color: simpleMode ? "var(--gold)" : "var(--ivory-dim)",
+                backgroundColor: simpleMode ? "rgba(201, 162, 75, 0.1)" : "transparent",
+              }}
+            >
+              {simpleMode ? "Explorar mapa" : "Vista simple"}
+            </button>
+          )}
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
-          <button
-            onClick={onToggleSimpleMode}
-            aria-pressed={simpleMode}
-            className="rounded-full border px-2.5 py-1 font-ui text-[10px] transition-all duration-200 ease-out"
-            style={{
-              borderColor: simpleMode ? "var(--gold)" : "var(--border)",
-              color: simpleMode ? "var(--gold)" : "var(--ivory-dim)",
-              backgroundColor: simpleMode ? "rgba(201, 162, 75, 0.1)" : "transparent",
-            }}
-          >
-            {simpleMode ? "Mapa" : "Simple"}
-          </button>
+          {onToggleSimpleMode && (
+            <button
+              onClick={onToggleSimpleMode}
+              aria-pressed={simpleMode}
+              className="rounded-full border px-2.5 py-1 font-ui text-[10px] transition-all duration-200 ease-out"
+              style={{
+                borderColor: simpleMode ? "var(--gold)" : "var(--border)",
+                color: simpleMode ? "var(--gold)" : "var(--ivory-dim)",
+                backgroundColor: simpleMode ? "rgba(201, 162, 75, 0.1)" : "transparent",
+              }}
+            >
+              {simpleMode ? "Mapa" : "Simple"}
+            </button>
+          )}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="p-2 text-ivory-dim hover:text-ivory"

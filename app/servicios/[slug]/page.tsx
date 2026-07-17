@@ -31,7 +31,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <Navbar simpleMode={false} onToggleSimpleMode={() => {}} />
+      <Navbar />
 
       <main id="contenido-principal" className="mx-auto max-w-4xl px-6 py-16">
         <nav className="mb-8 text-xs text-ivory-dim" aria-label="Breadcrumb">
