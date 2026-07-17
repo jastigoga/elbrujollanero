@@ -48,7 +48,7 @@ export function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col items-center justify-center gap-6 rounded-2xl border border-whatsapp/15 bg-whatsapp/[0.04] p-10 text-center"
+            className="flex flex-col items-center justify-center gap-6 rounded-2xl border border-whatsapp/15 bg-whatsapp/[0.04] p-6 text-center md:p-10"
             style={{ backdropFilter: "blur(12px)" }}
           >
             {/* Decorative ring around icon */}

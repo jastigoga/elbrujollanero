@@ -395,7 +395,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="mb-6 font-display text-5xl leading-[1.1] text-ivory md:text-7xl"
+            className="mb-6 font-display text-3xl leading-[1.1] text-ivory sm:text-5xl md:text-7xl"
           >
             Recupera lo que el{" "}
             <span className="text-gold-soft">destino</span>{" "}

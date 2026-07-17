@@ -30,11 +30,11 @@ export function Footer() {
           <h3 className="mb-3 font-ui text-xs font-semibold uppercase tracking-widest text-gold">
             Navegacion
           </h3>
-          <ul className="space-y-2">
-            <li><Link href="/servicios" className="text-xs text-ivory-dim transition-colors hover:text-ivory">Servicios</Link></li>
-            <li><Link href="/nosotros" className="text-xs text-ivory-dim transition-colors hover:text-ivory">Nosotros</Link></li>
-            <li><Link href="/faq" className="text-xs text-ivory-dim transition-colors hover:text-ivory">Preguntas frecuentes</Link></li>
-            <li><Link href="/contacto" className="text-xs text-ivory-dim transition-colors hover:text-ivory">Contacto</Link></li>
+          <ul className="space-y-1">
+            <li><Link href="/servicios" className="block py-1.5 text-xs text-ivory-dim transition-colors hover:text-ivory">Servicios</Link></li>
+            <li><Link href="/nosotros" className="block py-1.5 text-xs text-ivory-dim transition-colors hover:text-ivory">Nosotros</Link></li>
+            <li><Link href="/faq" className="block py-1.5 text-xs text-ivory-dim transition-colors hover:text-ivory">Preguntas frecuentes</Link></li>
+            <li><Link href="/contacto" className="block py-1.5 text-xs text-ivory-dim transition-colors hover:text-ivory">Contacto</Link></li>
           </ul>
         </div>
 

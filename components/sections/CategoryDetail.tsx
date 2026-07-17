@@ -125,7 +125,7 @@ export function CategoryDetail({
           />
 
           {/* Header */}
-          <div className="flex items-center gap-5 px-8 pb-4 pt-7">
+          <div className="flex items-center gap-5 px-5 pb-4 pt-7 md:px-8">
             <button
               onClick={onClose}
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-base/80 text-ivory-dim backdrop-blur transition-all hover:border-white/20 hover:text-ivory"
@@ -157,7 +157,7 @@ export function CategoryDetail({
           </div>
 
           {/* Decorative divider */}
-          <div className="mx-8 flex items-center gap-3">
+          <div             className="mx-8 hidden items-center gap-3 sm:flex">
             <div className="h-px flex-1" style={{ background: `${accent}20` }} />
             <svg width="8" height="8" viewBox="0 0 8 8">
               <path d="M4 0L5 3L8 4L5 5L4 8L3 5L0 4L3 3Z" fill={accent} />
@@ -170,7 +170,7 @@ export function CategoryDetail({
             variants={stagger}
             initial="hidden"
             animate="visible"
-            className="grid gap-4 p-8 sm:grid-cols-2"
+            className="grid gap-4 p-5 sm:grid-cols-2 sm:p-8"
           >
             {services.map((service) => (
               <ServiceMiniCard
@@ -183,7 +183,7 @@ export function CategoryDetail({
           </motion.div>
 
           {/* Bottom CTA */}
-          <div className="px-8 pb-8 text-center">
+          <div className="px-5 pb-8 text-center md:px-8">
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hola, quiero información sobre ${CATEGORY_LABEL[category]}`)}`}
               target="_blank"

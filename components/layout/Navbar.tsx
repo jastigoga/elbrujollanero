@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
@@ -14,6 +15,16 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  /* Lock body scroll when mobile menu is open */
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   return (
     <nav className="fixed inset-x-0 top-0 z-30 border-b border-border/50 bg-base/80 backdrop-blur-md">
@@ -51,40 +62,48 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile toggle — larger touch target */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-2 text-ivory-dim hover:text-ivory md:hidden"
+          className="p-3 text-ivory-dim hover:text-ivory md:hidden"
           aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="border-t border-border/50 bg-base/95 backdrop-blur-md md:hidden">
-          <div className="px-6 pb-4 pt-2">
-            {NAV_LINKS.map((link) => (
+      {/* Mobile menu with animation */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="overflow-hidden border-t border-border/50 bg-base/95 backdrop-blur-md md:hidden"
+          >
+            <div className="px-6 pb-4 pt-2">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block py-3 font-ui text-sm text-ivory-dim transition-colors hover:text-ivory"
+                >
+                  {link.label}
+                </Link>
+              ))}
               <Link
-                key={link.href}
-                href={link.href}
+                href="/contacto"
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 font-ui text-sm text-ivory-dim transition-colors hover:text-ivory"
+                className="mt-2 block rounded-full bg-gold/10 py-3 text-center font-ui text-sm font-medium text-gold"
               >
-                {link.label}
+                Consulta gratis
               </Link>
-            ))}
-            <Link
-              href="/contacto"
-              onClick={() => setMobileOpen(false)}
-              className="mt-2 block rounded-full bg-gold/10 py-3 text-center font-ui text-sm font-medium text-gold"
-            >
-              Consulta gratis
-            </Link>
-          </div>
-        </div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

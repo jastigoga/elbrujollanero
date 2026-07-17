@@ -45,7 +45,7 @@ export function ServiceDetailPanel({ serviceSlug, onClose }: Props) {
             {/* Close */}
             <button
               onClick={onClose}
-              className="absolute right-4 top-4 z-50 flex h-8 w-8 items-center justify-center rounded-full border border-border text-ivory-dim transition-colors hover:border-gold hover:text-ivory"
+              className="absolute right-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-border text-ivory-dim transition-colors hover:border-gold hover:text-ivory"
               aria-label="Cerrar"
             >
               ✕

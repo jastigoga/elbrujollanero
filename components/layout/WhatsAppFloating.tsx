@@ -13,7 +13,8 @@ export function WhatsAppFloating({ message }: { message?: string }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
-      className="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-whatsapp-on shadow-lg motion-safe:animate-pulse-ring focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+      className="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-whatsapp-on shadow-lg motion-safe:animate-pulse-ring focus-visible:outline focus-visible:outline-2 focus-visible:outline-white md:bottom-6"
+      style={{ bottom: "max(1.5rem, env(safe-area-inset-bottom, 1.5rem))" }}
     >
       <MessageCircle className="h-6 w-6" aria-hidden="true" />
     </a>

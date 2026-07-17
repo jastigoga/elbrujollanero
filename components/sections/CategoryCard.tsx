@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
   Heart,
@@ -53,7 +53,6 @@ export function CategoryCard({
   onClick: () => void;
 }) {
   const [flipped, setFlipped] = useState(false);
-  const touchUsed = useRef(false);
   const accent = CATEGORY_COLORS[category] ?? "#C9A24B";
   const MainIcon =
     category === "amor"
@@ -64,22 +63,21 @@ export function CategoryCard({
           ? Skull
           : Eye;
 
-  const handleTouchStart = useCallback(() => {
-    touchUsed.current = true;
-  }, []);
-
+  /* Touch: 1st tap flips, 2nd tap on flipped card navigates */
   const handleTouchEnd = useCallback(
     (e: React.TouchEvent) => {
-      if (!touchUsed.current) return;
       e.preventDefault();
-      setFlipped((prev) => !prev);
-      touchUsed.current = false;
+      if (flipped) {
+        onClick();
+      } else {
+        setFlipped(true);
+      }
     },
-    [],
+    [flipped, onClick],
   );
 
+  /* Desktop: hover flips, click navigates */
   const handleClick = useCallback(() => {
-    if (touchUsed.current) return;
     onClick();
   }, [onClick]);
 
@@ -96,20 +94,15 @@ export function CategoryCard({
       <div
         className="relative w-full"
         style={{
-          height: 420,
+          height: "clamp(340px, 55vh, 420px)",
           transformStyle: "preserve-3d",
           transition: isZooming
             ? "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
             : "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
           transform: isZooming ? "scale(1.3)" : undefined,
         }}
-        onMouseEnter={() => {
-          if (!touchUsed.current) setFlipped(true);
-        }}
-        onMouseLeave={() => {
-          if (!touchUsed.current) setFlipped(false);
-        }}
-        onTouchStart={handleTouchStart}
+        onMouseEnter={() => setFlipped(true)}
+        onMouseLeave={() => setFlipped(false)}
         onTouchEnd={handleTouchEnd}
       >
         {/* ══════ FRENTE ══════ */}

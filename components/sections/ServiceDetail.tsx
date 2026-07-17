@@ -67,13 +67,13 @@ export function ServiceDetail({
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-base/80 text-ivory-dim backdrop-blur transition-all hover:border-white/20 hover:text-ivory"
+            className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-border bg-base/80 text-ivory-dim backdrop-blur transition-all hover:border-white/20 hover:text-ivory"
           >
             <X className="h-4 w-4" />
           </button>
 
           {/* Header */}
-          <div className="px-8 pb-6 pt-8 text-center">
+          <div className="px-5 pb-6 pt-8 text-center md:px-8">
             {/* Category */}
             <motion.p
               variants={fadeUp}
@@ -120,7 +120,7 @@ export function ServiceDetail({
             variants={stagger}
             initial="hidden"
             animate="visible"
-            className="space-y-7 px-8 pb-8"
+            className="space-y-7 px-5 pb-8 md:px-8"
           >
             {/* Description */}
             <motion.div variants={fadeUp}>

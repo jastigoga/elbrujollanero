@@ -56,7 +56,7 @@ const cards = [
 
 export function TrustSection() {
   return (
-    <section className="relative py-28">
+    <section className="relative py-16 md:py-28">
       {/* Subtle radial glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
