@@ -5,7 +5,6 @@ import {
   Heart,
   Shield,
   Eye,
-  Sparkles,
   Moon,
   Stars,
   Flame,
@@ -14,6 +13,7 @@ import {
   Zap,
   Lock,
   Circle,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { CATEGORY_COLORS } from "@/flows/siteFlow.config";
@@ -63,9 +63,10 @@ export function CategoryCard({
       viewport={{ once: true, margin: "-60px" }}
       transition={{ delay: index * 0.15, duration: 0.6 }}
       className="group cursor-pointer"
-      style={{ perspective: "1000px" }}
+      style={{ perspective: "1200px" }}
       onClick={onClick}
     >
+      {/* Card wrapper — explicit height so h-full children work */}
       <div
         className="relative h-[420px] w-full"
         style={{
@@ -78,13 +79,18 @@ export function CategoryCard({
       >
         {/* ══════ FRENTE ══════ */}
         <div
-          className="absolute inset-0 rounded-2xl border-2 p-[1px] transition-transform duration-700 group-hover:[transform:rotateY(180deg)]"
+          className="absolute inset-0 rounded-2xl border-2 p-[1px] transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:[transform:rotateY(180deg)]"
           style={{
             backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
             background: `linear-gradient(160deg, ${accent}60, ${accent}15, ${accent}60)`,
           }}
         >
-          <div className="relative h-full overflow-hidden rounded-[14px] bg-base">
+          <div
+            className="relative overflow-hidden rounded-[14px] bg-base"
+            style={{ height: "calc(100% - 2px)" }}
+          >
+            {/* Corner ornaments */}
             <div className="pointer-events-none absolute inset-0 z-10">
               <svg className="absolute left-3 top-3 h-5 w-5 opacity-30" viewBox="0 0 20 20">
                 <path d="M0 0L8 0L8 2L2 2L2 8L0 8Z" fill={accent} />
@@ -162,16 +168,20 @@ export function CategoryCard({
           </div>
         </div>
 
-        {/* ══════ REVERSO — solo títulos ══════ */}
+        {/* ══════ REVERSO ══════ */}
         <div
-          className="absolute inset-0 rounded-2xl border-2 p-[1px] transition-transform duration-700 group-hover:[transform:rotateY(0deg)]"
+          className="absolute inset-0 rounded-2xl border-2 p-[1px] transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:[transform:rotateY(0deg)]"
           style={{
             backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
             background: `linear-gradient(160deg, ${accent}60, ${accent}15, ${accent}60)`,
           }}
         >
-          <div className="relative h-full overflow-hidden rounded-[14px] bg-base">
+          <div
+            className="relative overflow-hidden rounded-[14px] bg-base"
+            style={{ height: "calc(100% - 2px)" }}
+          >
             <div
               className="absolute inset-4 rounded-xl border opacity-20"
               style={{ borderColor: accent }}
@@ -185,7 +195,6 @@ export function CategoryCard({
             />
 
             <div className="relative flex h-full flex-col px-5 pt-6 pb-5">
-              {/* Header */}
               <div className="mb-4 text-center">
                 <div
                   className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full"
@@ -197,7 +206,6 @@ export function CategoryCard({
                 <div className="mx-auto mt-1.5 h-px w-10 opacity-30" style={{ background: accent }} />
               </div>
 
-              {/* Títulos simples */}
               <div className="flex-1 space-y-1.5 overflow-hidden">
                 {serviceNames.map((name, i) => (
                   <div
@@ -216,7 +224,6 @@ export function CategoryCard({
                 ))}
               </div>
 
-              {/* CTA */}
               <div className="mt-3 text-center">
                 <span
                   className="inline-flex items-center gap-1 rounded-full px-4 py-1.5 font-ui text-[10px] font-semibold"
