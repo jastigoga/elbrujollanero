@@ -93,34 +93,54 @@ function MysticalMap() {
           style={{ transformOrigin: "400px 400px" }}
         />
 
-        {/* ── Anillo tercero — respiración ── */}
+        {/* ── Anillo tercero — rotación + respiración ── */}
         <motion.circle
           cx="400" cy="400" r="240"
           stroke="#C9A24B" strokeWidth="0.8" fill="none"
-          animate={{ opacity: [0.2, 0.35, 0.2], r: [238, 242, 238] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          strokeDasharray="6 10"
+          animate={{ rotate: 360, opacity: [0.2, 0.35, 0.2] }}
+          transition={{
+            rotate: { duration: 150, repeat: Infinity, ease: "linear" },
+            opacity: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+          }}
+          style={{ transformOrigin: "400px 400px" }}
         />
 
-        {/* ── Anillo interno — pulsación ── */}
+        {/* ── Anillo interno — rotación inversa + pulsación ── */}
         <motion.circle
           cx="400" cy="400" r="160"
           stroke="#C9A24B" strokeWidth="0.6" fill="none"
-          animate={{ opacity: [0.15, 0.3, 0.15], r: [158, 162, 158] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          strokeDasharray="3 8"
+          animate={{ rotate: -360, opacity: [0.15, 0.3, 0.15] }}
+          transition={{
+            rotate: { duration: 120, repeat: Infinity, ease: "linear" },
+            opacity: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
+          }}
+          style={{ transformOrigin: "400px 400px" }}
         />
 
-        {/* ── Core círculos — pulso central ── */}
+        {/* ── Core círculos — rotación + pulso ── */}
         <motion.circle
           cx="400" cy="400" r="60"
           stroke="#C9A24B" strokeWidth="1.5" fill="none"
-          animate={{ opacity: [0.25, 0.45, 0.25], r: [58, 62, 58] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          strokeDasharray="8 6"
+          animate={{ rotate: 360, opacity: [0.25, 0.45, 0.25] }}
+          transition={{
+            rotate: { duration: 90, repeat: Infinity, ease: "linear" },
+            opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+          }}
+          style={{ transformOrigin: "400px 400px" }}
         />
         <motion.circle
           cx="400" cy="400" r="30"
           stroke="#C9A24B" strokeWidth="1" fill="none"
-          animate={{ opacity: [0.2, 0.4, 0.2] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+          strokeDasharray="4 4"
+          animate={{ rotate: -360, opacity: [0.2, 0.4, 0.2] }}
+          transition={{
+            rotate: { duration: 60, repeat: Infinity, ease: "linear" },
+            opacity: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 },
+          }}
+          style={{ transformOrigin: "400px 400px" }}
         />
         <motion.circle
           cx="400" cy="400" r="5"
