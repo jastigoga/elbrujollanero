@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 import { services } from "@/content/services";
 import { CategoryCard } from "./CategoryCard";
 import { CategoryDetail } from "./CategoryDetail";
 import { ServiceDetail } from "./ServiceDetail";
+import { TunnelAnimation } from "./TunnelAnimation";
 
 const CATEGORIES = [
   {
@@ -26,12 +27,22 @@ const CATEGORIES = [
 ] as const;
 
 export function ServicesGrid() {
+  const [tunnelCategory, setTunnelCategory] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedService, setSelectedService] = useState<string | null>(null);
 
+  const handleCardClick = useCallback((category: string) => {
+    setTunnelCategory(category);
+  }, []);
+
+  const handleTunnelDone = useCallback(() => {
+    const cat = tunnelCategory;
+    setTunnelCategory(null);
+    if (cat) setSelectedCategory(cat);
+  }, [tunnelCategory]);
+
   return (
     <section id="servicios" className="relative py-24">
-      {/* Background glow */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -41,7 +52,6 @@ export function ServicesGrid() {
       />
 
       <div className="relative mx-auto max-w-5xl px-6">
-        {/* Header */}
         <div className="mb-16 text-center">
           <p className="mb-3 font-ui text-xs uppercase tracking-[3px] text-gold">
             Nuestros servicios
@@ -55,7 +65,6 @@ export function ServicesGrid() {
           </p>
         </div>
 
-        {/* 3 Tarot cards */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
           {CATEGORIES.map((cat, i) => {
             const catServices = services.filter((s) => s.category === cat.key);
@@ -68,12 +77,23 @@ export function ServicesGrid() {
                 serviceCount={catServices.length}
                 serviceNames={catServices.map((s) => s.title)}
                 index={i}
-                onClick={() => setSelectedCategory(cat.key)}
+                isZooming={tunnelCategory === cat.key}
+                onClick={() => handleCardClick(cat.key)}
               />
             );
           })}
         </div>
       </div>
+
+      {/* Tunnel animation */}
+      <AnimatePresence>
+        {tunnelCategory && (
+          <TunnelAnimation
+            category={tunnelCategory}
+            onDone={handleTunnelDone}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Category detail overlay */}
       <AnimatePresence>

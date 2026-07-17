@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import { CATEGORY_COLORS } from "@/flows/siteFlow.config";
 
-/* ── Iconos decorativos por categoría ───────────────────────── */
 const DECO_ICONS: Record<string, LucideIcon[]> = {
   amor: [Heart, Moon, Sparkles, Stars, Flame, Crown],
   proteccion: [Shield, Lock, Swords, Zap, Circle, Shield],
@@ -37,6 +36,7 @@ export function CategoryCard({
   serviceCount,
   serviceNames,
   index,
+  isZooming,
   onClick,
 }: {
   category: string;
@@ -45,6 +45,7 @@ export function CategoryCard({
   serviceCount: number;
   serviceNames: string[];
   index: number;
+  isZooming: boolean;
   onClick: () => void;
 }) {
   const accent = CATEGORY_COLORS[category] ?? "#C9A24B";
@@ -66,8 +67,14 @@ export function CategoryCard({
       onClick={onClick}
     >
       <div
-        className="relative h-[420px] w-full transition-transform duration-700"
-        style={{ transformStyle: "preserve-3d" }}
+        className="relative h-[420px] w-full"
+        style={{
+          transformStyle: "preserve-3d",
+          transition: isZooming
+            ? "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
+            : "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+          transform: isZooming ? "scale(1.3)" : undefined,
+        }}
       >
         {/* ══════ FRENTE ══════ */}
         <div
@@ -78,7 +85,6 @@ export function CategoryCard({
           }}
         >
           <div className="relative h-full overflow-hidden rounded-[14px] bg-base">
-            {/* Corner ornaments */}
             <div className="pointer-events-none absolute inset-0 z-10">
               <svg className="absolute left-3 top-3 h-5 w-5 opacity-30" viewBox="0 0 20 20">
                 <path d="M0 0L8 0L8 2L2 2L2 8L0 8Z" fill={accent} />
@@ -94,13 +100,11 @@ export function CategoryCard({
               </svg>
             </div>
 
-            {/* Inner border frame */}
             <div
               className="absolute inset-4 rounded-xl border opacity-20"
               style={{ borderColor: accent }}
             />
 
-            {/* Hover glow */}
             <div
               className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
               style={{
@@ -108,10 +112,8 @@ export function CategoryCard({
               }}
             />
 
-            {/* Top line */}
             <div className="mx-auto mt-8 h-px w-16 opacity-30" style={{ background: accent }} />
 
-            {/* Icon */}
             <div className="flex flex-col items-center px-6 pt-6 pb-2">
               <div
                 className="mb-5 flex h-20 w-20 items-center justify-center rounded-full"
@@ -128,23 +130,14 @@ export function CategoryCard({
                 />
               </div>
 
-              {/* Star divider */}
               <svg width="14" height="14" viewBox="0 0 14 14" className="mb-4 opacity-40">
-                <path
-                  d="M7 0L8.8 5.2L14 7L8.8 8.8L7 14L5.2 8.8L0 7L5.2 5.2Z"
-                  fill={accent}
-                />
+                <path d="M7 0L8.8 5.2L14 7L8.8 8.8L7 14L5.2 8.8L0 7L5.2 5.2Z" fill={accent} />
               </svg>
 
-              <h3 className="mb-2 text-center font-display text-xl text-ivory">
-                {label}
-              </h3>
-              <p className="text-center font-voice text-sm text-ivory-dim">
-                {description}
-              </p>
+              <h3 className="mb-2 text-center font-display text-xl text-ivory">{label}</h3>
+              <p className="text-center font-voice text-sm text-ivory-dim">{description}</p>
             </div>
 
-            {/* Bottom stats */}
             <div className="absolute bottom-0 inset-x-0 flex items-center justify-center pb-8">
               <span
                 className="rounded-full px-4 py-1.5 font-ui text-xs font-medium"
@@ -154,12 +147,10 @@ export function CategoryCard({
               </span>
             </div>
 
-            {/* Bottom line */}
             <div className="absolute bottom-12 inset-x-0 flex justify-center">
               <div className="h-px w-16 opacity-30" style={{ background: accent }} />
             </div>
 
-            {/* Shimmer on hover */}
             <div
               className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
               style={{
@@ -171,7 +162,7 @@ export function CategoryCard({
           </div>
         </div>
 
-        {/* ══════ REVERSO ══════ */}
+        {/* ══════ REVERSO — solo títulos ══════ */}
         <div
           className="absolute inset-0 rounded-2xl border-2 p-[1px] transition-transform duration-700 group-hover:[transform:rotateY(0deg)]"
           style={{
@@ -181,13 +172,11 @@ export function CategoryCard({
           }}
         >
           <div className="relative h-full overflow-hidden rounded-[14px] bg-base">
-            {/* Inner border */}
             <div
               className="absolute inset-4 rounded-xl border opacity-20"
               style={{ borderColor: accent }}
             />
 
-            {/* Background glow */}
             <div
               className="absolute inset-0"
               style={{
@@ -195,51 +184,50 @@ export function CategoryCard({
               }}
             />
 
-            {/* Content */}
-            <div className="relative flex h-full flex-col px-6 pt-7 pb-6">
+            <div className="relative flex h-full flex-col px-5 pt-6 pb-5">
               {/* Header */}
               <div className="mb-4 text-center">
                 <div
-                  className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full"
+                  className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full"
                   style={{ background: `${accent}15`, border: `1px solid ${accent}25` }}
                 >
-                  <MainIcon className="h-5 w-5" style={{ color: accent }} strokeWidth={1.5} />
+                  <MainIcon className="h-4 w-4" style={{ color: accent }} strokeWidth={1.5} />
                 </div>
-                <h3 className="font-display text-lg text-ivory">{label}</h3>
-                <div className="mx-auto mt-2 h-px w-12 opacity-30" style={{ background: accent }} />
+                <h3 className="font-display text-base text-ivory">{label}</h3>
+                <div className="mx-auto mt-1.5 h-px w-10 opacity-30" style={{ background: accent }} />
               </div>
 
-              {/* Service list */}
-              <div className="flex-1 space-y-2 overflow-hidden">
+              {/* Títulos simples */}
+              <div className="flex-1 space-y-1.5 overflow-hidden">
                 {serviceNames.map((name, i) => (
                   <div
                     key={name}
-                    className="flex items-center gap-2.5 rounded-lg px-3 py-2 transition-colors"
+                    className="flex items-center gap-2 rounded-md px-2.5 py-1.5"
                     style={{ background: `${accent}06` }}
                   >
-                    <div
-                      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-bold"
+                    <span
+                      className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[8px] font-bold"
                       style={{ background: `${accent}20`, color: accent }}
                     >
                       {i + 1}
-                    </div>
-                    <span className="font-ui text-xs text-ivory/80">{name}</span>
+                    </span>
+                    <span className="font-ui text-[11px] text-ivory/80">{name}</span>
                   </div>
                 ))}
               </div>
 
               {/* CTA */}
-              <div className="mt-4 text-center">
+              <div className="mt-3 text-center">
                 <span
-                  className="inline-flex items-center gap-1.5 rounded-full px-5 py-2 font-ui text-xs font-semibold transition-all duration-200"
+                  className="inline-flex items-center gap-1 rounded-full px-4 py-1.5 font-ui text-[10px] font-semibold"
                   style={{
                     background: `${accent}20`,
                     color: accent,
                     border: `1px solid ${accent}30`,
                   }}
                 >
-                  Explorar servicios
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
+                  Entrar
+                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="2" y1="6" x2="10" y2="6" />
                     <polyline points="7,3 10,6 7,9" />
                   </svg>
