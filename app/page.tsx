@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloating } from "@/components/layout/WhatsAppFloating";
 import { ConstellationBackground } from "@/components/layout/ConstellationBackground";
 import { Hero } from "@/components/sections/Hero";
+import { TrustSection } from "@/components/sections/TrustSection";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Testimonios } from "@/components/sections/Testimonios";
 import { FAQSection } from "@/components/sections/FAQSection";
@@ -18,6 +19,8 @@ export default function HomePage() {
       <Navbar />
       <main id="contenido-principal" className="relative" style={{ zIndex: 2 }}>
         <Hero />
+        <SectionDivider />
+        <TrustSection />
         <SectionDivider />
         <ServicesGrid />
         <SectionDivider />
