@@ -63,23 +63,28 @@ export function CategoryCard({
           ? Skull
           : Eye;
 
-  /* Touch: 1st tap flips, 2nd tap on flipped card navigates */
+  /* Mobile: tap anywhere ONLY flips. "Entrar" button navigates. */
   const handleTouchEnd = useCallback(
     (e: React.TouchEvent) => {
       e.preventDefault();
-      if (flipped) {
-        onClick();
-      } else {
-        setFlipped(true);
-      }
+      setFlipped((prev) => !prev);
     },
-    [flipped, onClick],
+    [],
   );
 
-  /* Desktop: hover flips, click navigates */
+  /* Desktop: hover flips, click anywhere navigates */
   const handleClick = useCallback(() => {
     onClick();
   }, [onClick]);
+
+  const handleEntrar = useCallback(
+    (e: React.MouseEvent | React.TouchEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
+      onClick();
+    },
+    [onClick],
+  );
 
   return (
     <motion.div
@@ -258,8 +263,10 @@ export function CategoryCard({
                 </div>
 
                 <div className="mt-3 text-center">
-                  <span
-                    className="inline-flex items-center gap-1 rounded-full px-4 py-1.5 font-ui text-[10px] font-semibold"
+                  <button
+                    onClick={handleEntrar}
+                    onTouchEnd={handleEntrar}
+                    className="inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-ui text-[11px] font-semibold transition-all duration-200 hover:scale-105 active:scale-95 sm:px-4 sm:py-1.5 sm:text-[10px]"
                     style={{
                       background: `${accent}20`,
                       color: accent,
@@ -271,7 +278,7 @@ export function CategoryCard({
                       <line x1="2" y1="6" x2="10" y2="6" />
                       <polyline points="7,3 10,6 7,9" />
                     </svg>
-                  </span>
+                  </button>
                 </div>
               </div>
             </div>

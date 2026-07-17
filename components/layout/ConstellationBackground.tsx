@@ -223,13 +223,43 @@ export function ConstellationBackground() {
     return (
       <div
         className="pointer-events-none fixed inset-0"
-        style={{
-          zIndex: 1,
-          background:
-            "radial-gradient(ellipse at 50% 30%, rgba(201,162,75,0.06) 0%, transparent 60%)",
-        }}
+        style={{ zIndex: 1 }}
         aria-hidden="true"
-      />
+      >
+        {/* Base radial glow */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 30%, rgba(201,162,75,0.08) 0%, transparent 55%)",
+          }}
+        />
+        {/* Secondary warm glow */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 30% 70%, rgba(201,162,75,0.04) 0%, transparent 50%)",
+          }}
+        />
+        {/* Subtle star-like dots via CSS */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(1px 1px at 15% 20%, rgba(201,162,75,0.35) 50%, transparent 50%)," +
+              "radial-gradient(1px 1px at 80% 15%, rgba(201,162,75,0.25) 50%, transparent 50%)," +
+              "radial-gradient(1.5px 1.5px at 45% 60%, rgba(201,162,75,0.3) 50%, transparent 50%)," +
+              "radial-gradient(1px 1px at 70% 75%, rgba(201,162,75,0.2) 50%, transparent 50%)," +
+              "radial-gradient(1px 1px at 25% 85%, rgba(201,162,75,0.25) 50%, transparent 50%)," +
+              "radial-gradient(1.5px 1.5px at 90% 45%, rgba(201,162,75,0.2) 50%, transparent 50%)," +
+              "radial-gradient(1px 1px at 10% 50%, rgba(201,162,75,0.15) 50%, transparent 50%)," +
+              "radial-gradient(1px 1px at 55% 35%, rgba(201,162,75,0.2) 50%, transparent 50%)," +
+              "radial-gradient(1.5px 1.5px at 35% 10%, rgba(201,162,75,0.25) 50%, transparent 50%)," +
+              "radial-gradient(1px 1px at 65% 90%, rgba(201,162,75,0.15) 50%, transparent 50%)",
+          }}
+        />
+      </div>
     );
   }
 
