@@ -1,0 +1,36 @@
+:root {
+  /* Superficies */
+  --bg-base: #0A0A0B;
+  --bg-elevated: #141416;
+  --bg-carbon: #1C1C1F;
+  --border: #2A2A2D;
+  --border-strong: #3A3A3E;
+
+  /* Marca */
+  --gold: #C9A24B;
+  --gold-soft: #E4C878;
+
+  /* Texto */
+  --ivory: #F5F3EF;
+  --ivory-dim: #C8C5BC;
+
+  /* Conversion (uso exclusivo CTA WhatsApp) */
+  --whatsapp: #25D366;
+  --whatsapp-dark: #128C7E;
+  --whatsapp-on: #04241A;
+
+  /* Radios */
+  --radius-card: 16px;
+  --radius-control: 10px;
+  --radius-pill: 999px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Estados */
+  --error: #EF4444;
+  --success: #22C55E;
+  --warning: #EAB308;
+}
