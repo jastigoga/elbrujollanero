@@ -74,78 +74,96 @@ function MysticalMap() {
         <circle cx="400" cy="400" r="380" fill="url(#mapGlow)" />
 
         {/* ── Anillo externo — rotación lenta ── */}
-        <motion.circle
-          cx="400" cy="400" r="350"
-          stroke="#C9A24B" strokeWidth="1" fill="none" opacity="0.3"
-          strokeDasharray="4 8"
+        <motion.g
           animate={{ rotate: 360 }}
-          transition={{ duration: 240, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           style={{ transformOrigin: "400px 400px" }}
-        />
+        >
+          <circle
+            cx="400" cy="400" r="350"
+            stroke="#C9A24B" strokeWidth="1.2" fill="none" opacity="0.3"
+            strokeDasharray="12 8"
+          />
+          <circle cx="400" cy="50" r="4" fill="#C9A24B" opacity="0.7" />
+          <circle cx="750" cy="400" r="3" fill="#C9A24B" opacity="0.5" />
+        </motion.g>
 
         {/* ── Anillo segundo — rotación inversa ── */}
-        <motion.circle
-          cx="400" cy="400" r="300"
-          stroke="#C9A24B" strokeWidth="1.2" fill="none" opacity="0.35"
-          strokeDasharray="2 12"
+        <motion.g
           animate={{ rotate: -360 }}
-          transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
           style={{ transformOrigin: "400px 400px" }}
-        />
+        >
+          <circle
+            cx="400" cy="400" r="300"
+            stroke="#C9A24B" strokeWidth="1.4" fill="none" opacity="0.35"
+            strokeDasharray="10 6"
+          />
+          <circle cx="400" cy="100" r="4.5" fill="#C9A24B" opacity="0.8" />
+          <circle cx="100" cy="400" r="3" fill="#C9A24B" opacity="0.5" />
+        </motion.g>
 
         {/* ── Anillo tercero — rotación + respiración ── */}
-        <motion.circle
-          cx="400" cy="400" r="240"
-          stroke="#C9A24B" strokeWidth="0.8" fill="none"
-          strokeDasharray="6 10"
-          animate={{ rotate: 360, opacity: [0.2, 0.35, 0.2] }}
-          transition={{
-            rotate: { duration: 150, repeat: Infinity, ease: "linear" },
-            opacity: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-          }}
+        <motion.g
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           style={{ transformOrigin: "400px 400px" }}
-        />
+        >
+          <motion.circle
+            cx="400" cy="400" r="240"
+            stroke="#C9A24B" strokeWidth="1" fill="none"
+            strokeDasharray="8 5"
+            animate={{ opacity: [0.25, 0.45, 0.25] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <circle cx="400" cy="160" r="3.5" fill="#C9A24B" opacity="0.7" />
+        </motion.g>
 
         {/* ── Anillo interno — rotación inversa + pulsación ── */}
-        <motion.circle
-          cx="400" cy="400" r="160"
-          stroke="#C9A24B" strokeWidth="0.6" fill="none"
-          strokeDasharray="3 8"
-          animate={{ rotate: -360, opacity: [0.15, 0.3, 0.15] }}
-          transition={{
-            rotate: { duration: 120, repeat: Infinity, ease: "linear" },
-            opacity: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
-          }}
+        <motion.g
+          animate={{ rotate: -360 }}
+          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
           style={{ transformOrigin: "400px 400px" }}
-        />
+        >
+          <motion.circle
+            cx="400" cy="400" r="160"
+            stroke="#C9A24B" strokeWidth="0.8" fill="none"
+            strokeDasharray="6 4"
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          />
+          <circle cx="400" cy="240" r="3" fill="#C9A24B" opacity="0.65" />
+        </motion.g>
 
         {/* ── Core círculos — rotación + pulso ── */}
-        <motion.circle
-          cx="400" cy="400" r="60"
-          stroke="#C9A24B" strokeWidth="1.5" fill="none"
-          strokeDasharray="8 6"
-          animate={{ rotate: 360, opacity: [0.25, 0.45, 0.25] }}
-          transition={{
-            rotate: { duration: 90, repeat: Infinity, ease: "linear" },
-            opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-          }}
+        <motion.g
+          animate={{ rotate: 360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
           style={{ transformOrigin: "400px 400px" }}
-        />
-        <motion.circle
-          cx="400" cy="400" r="30"
-          stroke="#C9A24B" strokeWidth="1" fill="none"
-          strokeDasharray="4 4"
-          animate={{ rotate: -360, opacity: [0.2, 0.4, 0.2] }}
-          transition={{
-            rotate: { duration: 60, repeat: Infinity, ease: "linear" },
-            opacity: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 },
-          }}
+        >
+          <circle
+            cx="400" cy="400" r="60"
+            stroke="#C9A24B" strokeWidth="1.5" fill="none" opacity="0.35"
+            strokeDasharray="10 5"
+          />
+          <circle cx="400" cy="340" r="4" fill="#C9A24B" opacity="0.8" />
+        </motion.g>
+        <motion.g
+          animate={{ rotate: -360 }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
           style={{ transformOrigin: "400px 400px" }}
-        />
+        >
+          <circle
+            cx="400" cy="400" r="30"
+            stroke="#C9A24B" strokeWidth="1" fill="none" opacity="0.3"
+            strokeDasharray="5 3"
+          />
+          <circle cx="400" cy="370" r="2.5" fill="#C9A24B" opacity="0.7" />
+        </motion.g>
         <motion.circle
           cx="400" cy="400" r="5"
           fill="#C9A24B"
-          animate={{ opacity: [0.3, 0.6, 0.3], r: [4, 6, 4] }}
+          animate={{ opacity: [0.3, 0.7, 0.3], r: [4, 7, 4] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         />
 
@@ -177,31 +195,31 @@ function MysticalMap() {
           />
         ))}
 
-        {/* ── Marcas de grado — pulso ── */}
-        {Array.from({ length: 72 }, (_, i) => {
-          const angle = (360 / 72) * i;
-          const rad = (angle * Math.PI) / 180;
-          const isMajor = i % 6 === 0;
-          const inner = isMajor ? 338 : 343;
-          return (
-            <motion.line
-              key={`tick-${i}`}
-              x1={400 + Math.cos(rad) * inner}
-              y1={400 + Math.sin(rad) * inner}
-              x2={400 + Math.cos(rad) * 350}
-              y2={400 + Math.sin(rad) * 350}
-              stroke="#C9A24B"
-              strokeWidth={isMajor ? "1" : "0.5"}
-              animate={{ opacity: isMajor ? [0.2, 0.4, 0.2] : [0.1, 0.2, 0.1] }}
-              transition={{
-                duration: isMajor ? 4 : 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.04,
-              }}
-            />
-          );
-        })}
+        {/* ── Marcas de grado — rotan con el anillo externo ── */}
+        <motion.g
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          style={{ transformOrigin: "400px 400px" }}
+        >
+          {Array.from({ length: 72 }, (_, i) => {
+            const angle = (360 / 72) * i;
+            const rad = (angle * Math.PI) / 180;
+            const isMajor = i % 6 === 0;
+            const inner = isMajor ? 338 : 343;
+            return (
+              <line
+                key={`tick-${i}`}
+                x1={400 + Math.cos(rad) * inner}
+                y1={400 + Math.sin(rad) * inner}
+                x2={400 + Math.cos(rad) * 350}
+                y2={400 + Math.sin(rad) * 350}
+                stroke="#C9A24B"
+                strokeWidth={isMajor ? "1.2" : "0.6"}
+                opacity={isMajor ? "0.4" : "0.2"}
+              />
+            );
+          })}
+        </motion.g>
 
         {/* ── Constellation path ── */}
         <motion.path
