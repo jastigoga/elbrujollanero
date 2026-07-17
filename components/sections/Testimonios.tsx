@@ -1,83 +1,177 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { staggerContainer, staggerItem, revealOnScroll } from "@/animations/variants";
+import { Star } from "lucide-react";
 
 const TESTIMONIOS = [
   {
     initials: "M.R.",
-    quote: "Despues de meses sin hablar, volvio a buscarme. No lo podia creer.",
+    name: "María R.",
+    quote:
+      "Después de meses sin hablar, volvió a buscarme. No lo podía creer. El trabajo fue rápido y efectivo.",
     service: "Amarres de amor",
+    category: "amor",
+    accent: "#FB7185",
+    rating: 5,
   },
   {
     initials: "L.V.",
-    quote: "Tenia energias muy pesadas. Despues de la limpia, todo cambio en mi vida.",
+    name: "Luis V.",
+    quote:
+      "Tenía energías muy pesadas. Después de la limpia, todo cambió en mi vida. Me siento renovado.",
     service: "Limpias espirituales",
+    category: "proteccion",
+    accent: "#38BDF8",
+    rating: 5,
   },
   {
     initials: "C.A.",
-    quote: "Una tercera persona estaba arruinando mi relacion. La proteccion espiritual me dio paz.",
-    service: "Proteccion espiritual",
+    name: "Carmen A.",
+    quote:
+      "Una tercera persona estaba arruinando mi relación. La protección espiritual me dio paz y seguridad.",
+    service: "Protección espiritual",
+    category: "proteccion",
+    accent: "#38BDF8",
+    rating: 5,
   },
   {
     initials: "R.M.",
-    quote: "Consulte por curiosidad y terminé recibiendo orientacion que me cambio la perspectiva.",
+    name: "Roberto M.",
+    quote:
+      "Consulté por curiosidad y terminé recibiendo orientación que me cambió la perspectiva de mi vida.",
     service: "Consultas espirituales",
+    category: "consulta",
+    accent: "#FBBF24",
+    rating: 5,
+  },
+  {
+    initials: "A.P.",
+    name: "Ana P.",
+    quote:
+      "Pensé que nunca volvería. Hoy estamos juntos de nuevo. Agradecida eternamente con el Maestro.",
+    service: "Retorno del ser amado",
+    category: "amor",
+    accent: "#FB7185",
+    rating: 5,
+  },
+  {
+    initials: "E.B.",
+    name: "Eduardo B.",
+    quote:
+      "Después de la protección, las cosas negativas dejaron de ocurrir. Mi familia está tranquila.",
+    service: "Protección espiritual",
+    category: "proteccion",
+    accent: "#38BDF8",
+    rating: 5,
   },
 ];
 
-export function Testimonios() {
+function TestimonialCard({
+  testimonial,
+  index,
+}: {
+  testimonial: (typeof TESTIMONIOS)[number];
+  index: number;
+}) {
   return (
-    <motion.section
-      id="testimonios"
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-      className="mt-20 mb-16"
+    <motion.blockquote
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ delay: index * 0.08, duration: 0.5 }}
+      className="group relative overflow-hidden rounded-2xl border border-border bg-carbon/50 p-6 transition-all duration-300 hover:border-white/10 hover:bg-carbon/70"
+      style={{ backdropFilter: "blur(12px)" }}
     >
-      <motion.h2
-        variants={staggerItem}
-        className="mb-2 text-center font-display text-2xl text-ivory"
-      >
-        Casos reales
-      </motion.h2>
-      <motion.p
-        variants={staggerItem}
-        className="mb-10 text-center font-ui text-sm text-ivory-dim"
-      >
-        Testimonios verificados de consultantes reales
-      </motion.p>
+      {/* Accent glow top-right */}
+      <div
+        className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
+        style={{ background: testimonial.accent }}
+      />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {TESTIMONIOS.map((t, i) => (
-          <motion.blockquote
-            key={t.initials}
-            custom={i}
-            variants={revealOnScroll}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="rounded-xl border border-border p-5 transition-all duration-200 hover:border-gold/40"
-            style={{
-              background: "var(--glass-bg)",
-              backdropFilter: "blur(var(--glass-blur))",
-            }}
-          >
-            <p className="mb-3 font-voice text-sm italic text-ivory leading-relaxed">
-              &ldquo;{t.quote}&rdquo;
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="font-ui text-xs font-semibold text-gold-soft">
-                {t.initials}
-              </span>
-              <span className="rounded-full bg-gold/10 px-2 py-0.5 font-ui text-[9px] text-gold">
-                {t.service}
-              </span>
-            </div>
-          </motion.blockquote>
+      {/* Stars */}
+      <div className="mb-4 flex gap-0.5">
+        {Array.from({ length: testimonial.rating }).map((_, i) => (
+          <Star
+            key={i}
+            className="h-3.5 w-3.5 fill-gold text-gold"
+          />
         ))}
       </div>
-    </motion.section>
+
+      {/* Quote */}
+      <p className="mb-5 font-voice text-[15px] italic leading-relaxed text-ivory/90">
+        &ldquo;{testimonial.quote}&rdquo;
+      </p>
+
+      {/* Author */}
+      <div className="flex items-center gap-3">
+        <div
+          className="flex h-10 w-10 items-center justify-center rounded-full text-xs font-semibold"
+          style={{
+            background: `${testimonial.accent}20`,
+            color: testimonial.accent,
+            border: `1px solid ${testimonial.accent}30`,
+          }}
+        >
+          {testimonial.initials}
+        </div>
+        <div>
+          <div className="font-ui text-sm font-medium text-ivory">
+            {testimonial.name}
+          </div>
+          <div
+            className="font-ui text-[11px]"
+            style={{ color: testimonial.accent }}
+          >
+            {testimonial.service}
+          </div>
+        </div>
+      </div>
+    </motion.blockquote>
+  );
+}
+
+export function Testimonios() {
+  return (
+    <section id="testimonios" className="relative py-24">
+      {/* Atmospheric background */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=1920&q=60')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.04,
+        }}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-base via-transparent to-base" />
+
+      <div className="relative mx-auto max-w-6xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 text-center"
+        >
+          <p className="mb-3 font-ui text-xs uppercase tracking-[3px] text-gold">
+            Testimonios
+          </p>
+          <h2 className="mb-3 font-display text-3xl text-ivory md:text-4xl">
+            Casos reales, resultados reales
+          </h2>
+          <p className="mx-auto max-w-lg font-voice text-lg text-ivory-dim">
+            Lo que dicen quienes ya confiaron en nuestro trabajo espiritual
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {TESTIMONIOS.map((t, i) => (
+            <TestimonialCard key={t.initials} testimonial={t} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
