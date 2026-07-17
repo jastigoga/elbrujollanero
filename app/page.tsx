@@ -16,7 +16,7 @@ export default function HomePage() {
     <div className="relative min-h-screen bg-base">
       <ConstellationBackground />
       <Navbar />
-      <main id="contenido-principal" className="relative z-10">
+      <main id="contenido-principal" className="relative" style={{ zIndex: 2 }}>
         <Hero />
         <SectionDivider />
         <ServicesGrid />

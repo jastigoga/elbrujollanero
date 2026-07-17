@@ -46,27 +46,12 @@ function FloatingParticles() {
 export function Hero() {
   return (
     <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
-      {/* Background atmospheric image */}
+      {/* Very subtle radial glow — constellation shows through */}
       <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1920&q=80')",
-          backgroundSize: "cover",
-          backgroundPosition: "center 40%",
-        }}
-      />
-
-      {/* Gradient overlays for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-base/80 via-base/60 to-base" />
-      <div className="absolute inset-0 bg-gradient-to-r from-base/50 via-transparent to-base/50" />
-
-      {/* Radial gold glow */}
-      <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 60%, rgba(201,162,75,0.08) 0%, transparent 60%)",
+            "radial-gradient(ellipse at 50% 55%, rgba(201,162,75,0.06) 0%, transparent 55%)",
         }}
       />
 
@@ -150,7 +135,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
