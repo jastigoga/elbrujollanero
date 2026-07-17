@@ -28,9 +28,9 @@ const TESTIMONIOS = [
     initials: "C.A.",
     name: "Carmen A.",
     quote:
-      "Una tercera persona estaba arruinando mi relación. La protección espiritual me dio paz y seguridad.",
-    service: "Protección espiritual",
-    category: "proteccion",
+      "El Maestro realizó una ceremonia de protección que disipó las fuerzas negativas que acechaban a mi familia. Sentí una paz profunda desde la primera sesión.",
+    service: "Magia ceremonial",
+    category: "ocultismo",
     accent: "#A855F7",
     rating: 5,
   },
