@@ -30,7 +30,7 @@ export function TunnelAnimation({
         className="absolute inset-0 bg-base"
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 1, 1, 1, 1, 0] }}
-        transition={{ duration: 3.0, times: [0, 0.05, 0.15, 0.85, 0.92, 1] }}
+        transition={{ duration: 4.0, times: [0, 0.04, 0.12, 0.82, 0.93, 1] }}
       />
 
       {/* ═══ Fase 2: Primera ráfaga — líneas radiales lentas ═══ */}
@@ -52,8 +52,8 @@ export function TunnelAnimation({
                 opacity: [0, 0.7, 0.4, 0],
               }}
               transition={{
-                duration: 2.2,
-                delay: i * 0.015,
+                duration: 3.0,
+                delay: i * 0.018,
                 ease: [0.16, 1, 0.3, 1],
               }}
             />
@@ -80,8 +80,8 @@ export function TunnelAnimation({
                 opacity: [0, 0.6, 0],
               }}
               transition={{
-                duration: 1.2,
-                delay: 0.8 + i * 0.02,
+                duration: 1.6,
+                delay: 1.2 + i * 0.025,
                 ease: "easeOut",
               }}
             />
@@ -107,8 +107,8 @@ export function TunnelAnimation({
             opacity: [0, 0.6, 0.3, 0],
           }}
           transition={{
-            duration: 2.0,
-            delay: 0.2 + i * 0.15,
+            duration: 2.6,
+            delay: 0.25 + i * 0.18,
             ease: [0.16, 1, 0.3, 1],
           }}
         />
@@ -129,7 +129,7 @@ export function TunnelAnimation({
           height: [0, 100, 300, 600, 1200],
           opacity: [0, 0.9, 0.7, 0.4, 0],
         }}
-        transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
       />
 
       {/* ═══ Fase 6: Glow secundario pulsante ═══ */}
@@ -147,7 +147,7 @@ export function TunnelAnimation({
           height: [0, 200, 500, 900],
           opacity: [0, 0.5, 0.3, 0],
         }}
-        transition={{ duration: 2.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 3.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
       />
 
       {/* ═══ Fase 7: Partículas místicas ═══ */}
@@ -176,8 +176,8 @@ export function TunnelAnimation({
               scale: [0, 2, 1.5, 0],
             }}
             transition={{
-              duration: 1.8,
-              delay: 0.3 + i * 0.04,
+              duration: 2.4,
+              delay: 0.4 + i * 0.05,
               ease: [0.16, 1, 0.3, 1],
             }}
           />
@@ -196,7 +196,7 @@ export function TunnelAnimation({
           scale: [0, 0.5, 1, 1.5, 3],
           rotate: [0, 90, 270, 450],
         }}
-        transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
       >
         <circle cx="80" cy="80" r="75" stroke={accent} strokeWidth="0.5" fill="none" opacity="0.3" />
         <circle cx="80" cy="80" r="60" stroke={accent} strokeWidth="0.5" fill="none" opacity="0.25" />
@@ -217,7 +217,7 @@ export function TunnelAnimation({
         className="absolute inset-0 bg-ivory"
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 0.15, 0.35, 0.2, 0] }}
-        transition={{ duration: 0.8, delay: 2.2 }}
+        transition={{ duration: 1.0, delay: 3.0 }}
       />
 
       {/* ═══ Fase 10: Tercera ráfaga — vortex final ═══ */}
@@ -239,8 +239,8 @@ export function TunnelAnimation({
                 opacity: [0, 0.7, 0],
               }}
               transition={{
-                duration: 0.9,
-                delay: 2.0 + i * 0.025,
+                duration: 1.2,
+                delay: 2.8 + i * 0.03,
                 ease: "easeOut",
               }}
             />
@@ -270,7 +270,7 @@ export function TunnelAnimation({
             rotate: [0, 180],
             opacity: [0, 0.5, 0],
           }}
-          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{             duration: 3.2, ease: [0.16, 1, 0.3, 1] }}
         />
       </motion.div>
     </motion.div>
