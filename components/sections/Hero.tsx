@@ -254,6 +254,59 @@ function MysticalMap() {
             />
           );
         })}
+
+        {/* ══ ASTRAL STARS — scattered across entire hero ══ */}
+        {[
+          { x: 60, y: 80, s: "☉", sz: 22 },
+          { x: 720, y: 60, s: "☽", sz: 20 },
+          { x: 150, y: 180, s: "♄", sz: 16 },
+          { x: 650, y: 150, s: "☿", sz: 18 },
+          { x: 80, y: 400, s: "♀", sz: 24 },
+          { x: 720, y: 380, s: "♂", sz: 22 },
+          { x: 120, y: 620, s: "♃", sz: 18 },
+          { x: 680, y: 600, s: "⊕", sz: 20 },
+          { x: 300, y: 50, s: "✦", sz: 16 },
+          { x: 500, y: 70, s: "★", sz: 14 },
+          { x: 50, y: 280, s: "◈", sz: 15 },
+          { x: 750, y: 250, s: "⬡", sz: 16 },
+          { x: 350, y: 730, s: "△", sz: 14 },
+          { x: 450, y: 750, s: "✦", sz: 16 },
+          { x: 100, y: 720, s: "☽", sz: 18 },
+          { x: 700, y: 700, s: "★", sz: 15 },
+          { x: 200, y: 500, s: "◈", sz: 14 },
+          { x: 600, y: 480, s: "⬡", sz: 16 },
+          { x: 250, y: 320, s: "△", sz: 13 },
+          { x: 560, y: 300, s: "✦", sz: 14 },
+          { x: 380, y: 120, s: "☽", sz: 12 },
+          { x: 420, y: 680, s: "★", sz: 12 },
+          { x: 170, y: 120, s: "⊕", sz: 14 },
+          { x: 630, y: 120, s: "♄", sz: 14 },
+          { x: 90, y: 550, s: "♂", sz: 16 },
+          { x: 710, y: 500, s: "♀", sz: 16 },
+          { x: 320, y: 420, s: "☉", sz: 18 },
+          { x: 480, y: 380, s: "♃", sz: 16 },
+        ].map((star, i) => (
+          <motion.text
+            key={`starfield-${i}`}
+            x={star.x}
+            y={star.y}
+            textAnchor="middle"
+            dominantBaseline="central"
+            fill="#C9A24B"
+            fontSize={star.sz}
+            filter="url(#softGlow)"
+            animate={{ opacity: [0.12, 0.45, 0.12] }}
+            transition={{
+              duration: 3 + (i % 7) * 0.6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.15,
+            }}
+          >
+            {star.s}
+          </motion.text>
+        ))}
+
       </motion.svg>
     </div>
   );
